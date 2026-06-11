@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>吉門製甜 · 客製化訂購 [v6.2-99aea8a4]</title>
+<style>
+:root{--sg:#8faa8b;--sgd:#5c7a5a;--sgl:#c8d8c4;--cr:#faf7f2;--gd:#c9a96e;--gdl:#e8d5a8;--tx:#3a3228;--txl:#7a6f65;--bd:#e8e0d8;}
+*{box-sizing:border-box;margin:0;padding:0;font-family:"PingFang TC","Microsoft JhengHei",Arial,sans-serif;-webkit-tap-highlight-color:transparent;}
+body{background:var(--cr);color:var(--tx);min-height:100vh;}
+.hd{background:linear-gradient(135deg,var(--sgd),var(--sg),#a8c4a4);padding:28px 24px 20px;text-align:center;position:relative;overflow:hidden;}
+.hd::before{content:"";position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.06'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/svg%3E");}
+.hd h1{font-size:26px;color:#fff;font-weight:700;position:relative;}
+.hd p{font-size:16px;color:rgba(255,255,255,.8);margin-top:3px;position:relative;}
+.steps{display:flex;justify-content:center;padding:14px 16px 5px;}
+.si{display:flex;align-items:center;}
+.sd{width:28px;height:28px;border-radius:50%;background:#ddd;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#aaa;flex-shrink:0;}
+.sd.on{background:var(--sg);color:#fff;}.sd.dn{background:var(--sgd);color:#fff;}
+.sl{width:18px;height:2px;background:#ddd;}.sl.dn{background:var(--sgd);}
+.pw{padding:0 16px 4px;}.pb{height:3px;background:var(--bd);border-radius:99px;overflow:hidden;}
+.pf{height:100%;background:linear-gradient(90deg,var(--sgd),var(--sg));border-radius:99px;transition:width .4s;}
+.sec{display:none;padding:10px 16px 240px;}
+.sec.on{display:block;}
+.stitle{font-size:24px;font-weight:700;color:var(--sgd);text-align:center;margin-bottom:4px;margin-top:12px;}
+.shint{text-align:center;font-size:16px;color:var(--txl);margin-bottom:14px;}
+.dvdr{display:flex;align-items:center;gap:10px;margin:12px 0 8px;}
+.dvdr span{font-size:15px;color:var(--txl);white-space:nowrap;font-weight:700;}
+.dvdr::before,.dvdr::after{content:"";flex:1;height:1px;background:var(--bd);}
+.breq{display:inline-block;background:#fce8e8;color:#c04040;font-size:13px;padding:2px 7px;border-radius:99px;margin-left:6px;vertical-align:middle;}
+.szg{display:flex;gap:10px;}
+.szc{flex:1;background:#fff;border:2px solid var(--bd);border-radius:16px;padding:16px 8px;text-align:center;cursor:pointer;transition:all .2s;}
+.szc.on{border-color:var(--sgd);background:#f0f5ef;}
+.szico{font-size:34px;display:block;margin-bottom:6px;}
+.szn{font-size:18px;font-weight:700;}.szp{font-size:17px;color:var(--sgd);font-weight:700;margin-top:3px;}.szd{font-size:15px;color:var(--txl);margin-top:2px;}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;}
+.cc{background:#fff;border:2px solid var(--bd);border-radius:14px;padding:10px;cursor:pointer;display:flex;align-items:center;gap:8px;transition:all .2s;}
+.cc.on{border-color:var(--sgd);background:#f0f5ef;}.cc.on .ck{opacity:1;}
+.cdot{width:30px;height:30px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:17px;}
+.ci{flex:1;min-width:0;}.cn{font-size:15px;font-weight:700;}.cs{font-size:13px;color:var(--txl);margin-top:1px;}
+.ck{opacity:0;color:var(--sgd);font-size:15px;flex-shrink:0;}
+.fguide{background:#fdf9f1;border:1px solid var(--gdl);border-radius:12px;padding:10px 14px;margin-bottom:12px;font-size:15px;line-height:1.9;}
+.fguide strong{color:var(--sgd);font-size:14px;}
+.fc{background:#fff;border:2px solid var(--bd);border-radius:14px;padding:10px;cursor:pointer;display:flex;align-items:center;gap:8px;transition:all .2s;}
+.fc.on{border-color:var(--gd);background:#fdf9f1;}.fc.on .ck{opacity:1;color:var(--gd);}
+.fi{font-size:24px;flex-shrink:0;}.fn{font-size:15px;font-weight:700;}.fs{font-size:13px;color:var(--txl);margin-top:1px;}
+.frc{background:#fff;border:2px solid var(--bd);border-radius:14px;padding:14px 16px;cursor:pointer;display:flex;align-items:center;gap:12px;transition:all .2s;}
+.frc.on{border-color:#d4947a;background:#fdf5f2;}.frc.on .ck{opacity:1;color:#d4947a;}
+.fic{font-size:28px;flex-shrink:0;}.fn2{font-size:16px;font-weight:700;}.fs2{font-size:13px;color:var(--txl);margin-top:3px;}
+.frc-price{font-size:14px;font-weight:700;color:#d4947a;white-space:nowrap;flex-shrink:0;}
+.wc{background:#fff;border:2px solid var(--bd);border-radius:14px;padding:10px;cursor:pointer;display:flex;align-items:center;gap:8px;transition:all .2s;}
+.wc.on{border-color:#8b6b9e;background:#f7f3fc;}.wc.on .ck{opacity:1;color:#8b6b9e;}
+.fks{background:#fff;border:2px solid var(--bd);border-radius:14px;padding:13px;}
+.fkt{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.fkil{font-size:26px;flex-shrink:0;}.fkn{font-size:15px;font-weight:700;}.fkb{font-size:13px;color:var(--txl);margin-top:2px;}.fkf{font-size:13px;color:var(--sgd);font-weight:700;margin-top:2px;}
+.fkcr{display:flex;align-items:center;justify-content:space-between;background:#f8f4ef;border-radius:10px;padding:9px 13px;}
+.fkcl{font-size:15px;color:var(--txl);}.fkct{display:flex;align-items:center;gap:10px;}
+.cb{width:32px;height:32px;border-radius:50%;border:2px solid var(--bd);background:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--txl);-webkit-appearance:none;appearance:none;}
+.cnum{font-size:18px;font-weight:700;min-width:26px;text-align:center;}.fktl{font-size:14px;font-weight:700;color:var(--sgd);}
+.ptabs{display:flex;gap:8px;margin-bottom:10px;}
+.ptab{flex:1;padding:12px 6px;border-radius:12px;border:2px solid var(--bd);background:#fff;font-size:15px;font-weight:700;color:var(--txl);cursor:pointer;text-align:center;line-height:1.4;}
+.ptab.on{border-color:var(--sgd);background:#f0f5ef;color:var(--sgd);}
+.pdet{display:none;font-size:14px;color:var(--txl);background:#f5f0e8;border-radius:10px;padding:10px 13px;line-height:1.9;margin-bottom:10px;}
+.pdet.on{display:block;}
+.dlvf{display:none;flex-direction:column;gap:10px;background:#f5f5f5;border:2px solid #ccc;border-radius:14px;padding:14px;margin-bottom:10px;}
+.dlvf.on{display:flex;}
+.dlvt{font-size:15px;font-weight:700;color:#333;margin-bottom:2px;}
+.dlvw{font-size:13px;color:#c04040;margin-bottom:4px;}
+.dlvlbl{font-size:14px;color:var(--txl);font-weight:700;margin-bottom:5px;}
+.samechk{display:flex;align-items:center;gap:8px;margin-bottom:8px;font-size:15px;cursor:pointer;color:var(--sgd);font-weight:700;}
+.samechk input{width:18px;height:18px;accent-color:var(--sgd);}
+.fg{margin-bottom:12px;}
+.fg label{display:block;font-size:15px;color:var(--txl);margin-bottom:5px;font-weight:700;}
+.inp{width:100%;padding:13px 14px;border:2px solid var(--bd);border-radius:12px;font-size:16px;color:var(--tx);background:#fff;outline:none;-webkit-appearance:none;appearance:none;}
+.inp:focus{border-color:var(--sg);}
+.paytabs{display:flex;gap:10px;margin-bottom:8px;}
+.paytab{flex:1;padding:13px 8px;border-radius:12px;border:2px solid var(--bd);background:#fff;font-size:15px;font-weight:700;color:var(--txl);cursor:pointer;text-align:center;}
+.paytab.on{border-color:var(--sgd);background:#f0f5ef;color:var(--sgd);}
+.tfc{background:linear-gradient(135deg,#fef9ec,#fdf5e4);border:2px solid var(--gdl);border-radius:14px;padding:14px;display:none;}
+.tfc.on{display:block;}
+.tft{font-size:15px;font-weight:700;color:#8a6020;margin-bottom:8px;}
+.tfr{display:flex;gap:8px;padding:5px 0;font-size:15px;border-bottom:1px solid #f0e8d0;}
+.tfr:last-of-type{border-bottom:none;}
+.tfl{color:var(--txl);width:55px;flex-shrink:0;}.tfv{font-weight:700;}
+.tfn{font-size:13px;color:#7a6020;margin-top:8px;background:#fff8e8;border-radius:8px;padding:8px 10px;line-height:1.7;}
+.notice{background:linear-gradient(135deg,#fef9ec,#fdf5e4);border-left:3px solid var(--gd);border-radius:0 10px 10px 0;padding:8px 12px;font-size:15px;color:#7a6020;margin-bottom:10px;line-height:1.6;}
+.cprev{background:#fff;border-radius:14px;padding:10px 13px;margin-bottom:12px;display:flex;align-items:center;gap:10px;border:1px solid #f0e8e0;}
+.cpi{font-size:26px;}
+.tg{background:var(--sgl);color:var(--sgd);padding:2px 7px;border-radius:99px;font-size:13px;font-weight:700;display:inline-block;margin:2px 2px 0 0;}
+.tg.g{background:var(--gdl);color:#8a6020;}.tg.b{background:#f3ddd8;color:#b07060;}.tg.p{background:#f0eaf8;color:#7b5a9e;}
+.ocard{background:#fff;border-radius:18px;box-shadow:0 4px 20px rgba(90,70,50,.1);overflow:hidden;margin-bottom:14px;}
+.ohd{background:linear-gradient(135deg,var(--sgd),var(--sg));padding:13px 16px;display:flex;align-items:center;gap:10px;}
+.ohdi{font-size:24px;}.ohdt h3{font-size:18px;color:#fff;font-weight:700;}.ohdt p{font-size:13px;color:rgba(255,255,255,.8);margin-top:2px;}
+.obody{padding:12px 16px;}
+.orrow{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #f0ebe4;gap:10px;}
+.orrow:last-child{border-bottom:none;}
+.ol{font-size:13px;color:var(--txl);flex-shrink:0;}.ov{font-size:15px;font-weight:700;text-align:right;}
+.totc{background:linear-gradient(135deg,#f9f4eb,#fdf8f0);border:2px solid var(--gdl);border-radius:16px;padding:15px 17px;margin-bottom:14px;}
+.tl{display:flex;justify-content:space-between;font-size:15px;padding:4px 0;color:var(--txl);}.tl.main{color:var(--tx);font-weight:700;}
+.tdiv{height:1px;background:var(--gdl);margin:8px 0;}
+.tfin{display:flex;justify-content:space-between;align-items:center;}
+.tlab{font-size:16px;font-weight:700;}.tamt{font-size:30px;font-weight:700;color:var(--sgd);}
+.ebann{background:#f0f5ef;border:2px solid var(--sgl);border-radius:14px;padding:12px 13px;margin-bottom:14px;}
+.ebant{font-size:15px;font-weight:700;color:var(--sgd);margin-bottom:8px;}
+.ebanr{display:flex;gap:7px;flex-wrap:wrap;}
+.esb{padding:8px 13px;border-radius:10px;border:2px solid var(--sg);background:#fff;font-size:13px;font-weight:700;color:var(--sgd);cursor:pointer;-webkit-appearance:none;appearance:none;}
+.copyw{background:#fff;border:2px solid var(--sgl);border-radius:14px;padding:11px;margin-bottom:14px;}
+.copylbl{font-size:14px;color:var(--txl);margin-bottom:7px;text-align:center;line-height:1.6;}
+#copyArea{width:100%;height:220px;padding:10px;border:1px solid #e0dbd4;border-radius:10px;font-size:13px;line-height:1.7;font-family:monospace;color:var(--tx);background:#faf7f2;resize:none;outline:none;-webkit-user-select:all;user-select:all;cursor:pointer;}
+.soc{background:#fff;border-radius:15px;border:1px solid var(--bd);padding:13px 15px;margin-bottom:14px;}
+.sot{font-size:15px;font-weight:700;color:var(--sgd);margin-bottom:9px;}
+.sol{display:flex;align-items:center;gap:11px;padding:10px 11px;border-radius:12px;text-decoration:none;margin-bottom:6px;}
+.sol:last-child{margin-bottom:0;}
+.sol.fb{background:#f0f4ff;border:1px solid #c8d4f8;}.sol.ig{background:#fef0f8;border:1px solid #f8d4ec;}
+.soi{font-size:22px;flex-shrink:0;}.sot2 strong{display:block;font-size:15px;color:var(--tx);}.sot2 span{font-size:13px;color:var(--txl);}
+.soa{margin-left:auto;color:var(--txl);font-size:17px;}
+.strc{background:#fff;border-radius:15px;border:1px solid var(--bd);overflow:hidden;margin-bottom:14px;}
+.strb{display:flex;align-items:center;gap:11px;padding:13px 15px;background:linear-gradient(135deg,#eef5ee,#f4f9f4);text-decoration:none;border-bottom:1px solid var(--bd);}
+.strbi{font-size:26px;flex-shrink:0;}.strbt strong{display:block;font-size:15px;color:var(--sgd);}.strbt span{font-size:13px;color:var(--txl);}
+.strba{color:var(--sg);font-size:17px;margin-left:auto;}
+.strib{padding:13px 15px;}
+.scn{background:#fff8e8;border-left:3px solid var(--gd);border-radius:0 8px 8px 0;padding:8px 11px;font-size:13px;color:#7a6020;margin-bottom:10px;line-height:1.7;}
+.scct{font-size:15px;font-weight:700;color:var(--sgd);margin-bottom:5px;}
+.scci{display:flex;gap:7px;font-size:14px;color:var(--txl);padding:3px 0;}
+.nav{position:fixed;bottom:0;left:0;right:0;display:flex;gap:10px;padding:14px 16px 80px;background:linear-gradient(to top,var(--cr) 90%,transparent);z-index:9999;}
+.bbk{flex:1;padding:18px 14px;border-radius:13px;border:2px solid var(--bd);background:#fff;font-size:16px;color:var(--txl);cursor:pointer;font-family:inherit;font-weight:700;min-height:58px;-webkit-appearance:none;appearance:none;}
+.bnx{flex:2;padding:18px 14px;border-radius:13px;border:none;background:linear-gradient(135deg,var(--sgd),var(--sg));font-size:17px;font-weight:700;color:#fff;cursor:pointer;min-height:58px;font-family:inherit;-webkit-appearance:none;appearance:none;}
+.bnx:disabled{opacity:.4;}
+.restartbtn{width:100%;padding:14px;border-radius:12px;border:2px solid var(--bd);background:#fff;font-size:15px;color:var(--txl);cursor:pointer;margin-bottom:40px;font-family:inherit;-webkit-appearance:none;appearance:none;}
+.skipw{text-align:center;margin:10px 0 0;}.skipl{font-size:15px;color:var(--txl);cursor:pointer;text-decoration:underline;}
+.toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--sgd);color:#fff;padding:11px 26px;border-radius:100px;font-size:15px;z-index:9999;white-space:nowrap;transition:transform .3s;pointer-events:none;}
+.toast.on{transform:translateX(-50%) translateY(0);}
+.err{font-size:13px;color:#c04040;margin-top:4px;display:none;}
+.err.show{display:block;}
+.inp.err-inp{border-color:#c04040;background:#fff8f8;}
+</style>
+</head>
+<body>
+
+<div class="hd">
+  <h1>🎂 吉門製甜</h1>
+  <p>Jimon · 客製化鮮奶油蛋糕訂購</p>
+</div>
+
+<div class="steps">
+  <div class="si"><div class="sd on" id="d1">1</div><div class="sl" id="l1"></div></div>
+  <div class="si"><div class="sd" id="d2">2</div><div class="sl" id="l2"></div></div>
+  <div class="si"><div class="sd" id="d3">3</div><div class="sl" id="l3"></div></div>
+  <div class="si"><div class="sd" id="d4">4</div><div class="sl" id="l4"></div></div>
+  <div class="si"><div class="sd" id="d5">5</div></div>
+</div>
+<div class="pw"><div class="pb"><div class="pf" id="pf" style="width:20%"></div></div></div>
+
+<!-- S1 尺寸 -->
+<div class="sec on" id="s1">
+  <div class="stitle">選擇尺寸</div>
+  <div class="shint">點選後自動進入下一步</div>
+  <div class="szg">
+    <div class="szc" id="sz4"><span class="szico">🧁</span><div class="szn">4 吋</div><div class="szp">$500</div><div class="szd">2–3 人</div></div>
+    <div class="szc" id="sz6"><span class="szico">🎂</span><div class="szn">6 吋</div><div class="szp">$750</div><div class="szd">4–6 人</div></div>
+    <div class="szc" id="sz8"><span class="szico">🍰</span><div class="szn">8 吋</div><div class="szp">$1600</div><div class="szd">8–10 人</div></div>
+  </div>
+</div>
+
+<!-- S2 鮮奶油 -->
+<div class="sec" id="s2">
+  <div class="stitle">選擇鮮奶油口味</div>
+  <div class="shint">法國艾樂薇 · 請選一種</div>
+  <div class="dvdr"><span>基本款</span></div>
+  <div class="g2">
+    <div class="cc on" id="c0"><div class="cdot" style="background:#faf5e8">🤍</div><div class="ci"><div class="cn">經典原味</div><div class="cs">淡雅奶香</div></div><span class="ck">✓</span></div>
+    <div class="cc" id="c1"><div class="cdot" style="background:#fef9ec">🌿</div><div class="ci"><div class="cn">馬達加斯加香草</div><div class="cs">濃郁香草莢</div></div><span class="ck">✓</span></div>
+  </div>
+  <div class="dvdr"><span>茶類</span></div>
+  <div class="g2">
+    <div class="cc" id="c2"><div class="cdot" style="background:#e8f0e4">🍵</div><div class="ci"><div class="cn">日本抹茶</div><div class="cs">佐藤園精選</div></div><span class="ck">✓</span></div>
+    <div class="cc" id="c3"><div class="cdot" style="background:#f0e8dc">🍂</div><div class="ci"><div class="cn">日本焙茶</div><div class="cs">佐藤園精選</div></div><span class="ck">✓</span></div>
+    <div class="cc" id="c4"><div class="cdot" style="background:#f5ece4">🫖</div><div class="ci"><div class="cn">唐寧伯爵紅茶</div><div class="cs">花果茶香</div></div><span class="ck">✓</span></div>
+    <div class="cc" id="c5"><div class="cdot" style="background:#fef8e8">🍊</div><div class="ci"><div class="cn">柚香金萱</div><div class="cs">台灣茶香×柚香</div></div><span class="ck">✓</span></div>
+    <div class="cc" id="c6"><div class="cdot" style="background:#fdf0e4">🍋</div><div class="ci"><div class="cn">柚香紅茶</div><div class="cs">紅茶×清爽柚香</div></div><span class="ck">✓</span></div>
+    <div class="cc" id="c7"><div class="cdot" style="background:#f5e8e4">🌺</div><div class="ci"><div class="cn">紅烏龍</div><div class="cs">台東特色茶</div></div><span class="ck">✓</span></div>
+    <div class="cc" id="c8"><div class="cdot" style="background:#eef5ec">🌸</div><div class="ci"><div class="cn">文山包種茶</div><div class="cs">清雅花香烏龍</div></div><span class="ck">✓</span></div>
+  </div>
+  <div class="dvdr"><span>堅果 / 咖啡 / 糖類</span></div>
+  <div class="g2">
+    <div class="cc" id="c9"><div class="cdot" style="background:#f5eddc">🥜</div><div class="ci"><div class="cn">焦糖堅果醬</div><div class="cs">自製堅果</div></div><span class="ck">✓</span></div>
+    <div class="cc" id="c10"><div class="cdot" style="background:#f0f0f0">🖤</div><div class="ci"><div class="cn">鹽之花黑芝麻</div><div class="cs">自製堅果</div></div><span class="ck">✓</span></div>
+    <div class="cc" id="c11"><div class="cdot" style="background:#f0e4dc">🍫</div><div class="ci"><div class="cn">巧克力</div><div class="cs">濃郁可可</div></div><span class="ck">✓</span></div>
+    <div class="cc" id="c12"><div class="cdot" style="background:#f0e8e0">☕</div><div class="ci"><div class="cn">咖啡</div><div class="cs">深烘咖啡</div></div><span class="ck">✓</span></div>
+    <div class="cc" id="c13"><div class="cdot" style="background:#fef5e4">🍬</div><div class="ci"><div class="cn">太妃糖</div><div class="cs">自家熬煮</div></div><span class="ck">✓</span></div>
+  </div>
+</div>
+
+<!-- S3 內餡 -->
+<div class="sec" id="s3">
+  <div class="stitle">選擇風味內餡<span class="breq">必選一種</span></div>
+  <div class="shint">增添蛋糕層次感，豐富口感與風味變化</div>
+  <div class="fguide">
+    <strong>🏠 閤家歡樂：</strong>法式烤布蕾<br>
+    <strong>🍫 大人濃郁：</strong>生巧克力、酒香生巧克力<br>
+    <strong>🍓 果香酸感：</strong>覆盆子庫利（果凍）
+  </div>
+  <div class="g2">
+    <div class="fc on" id="f0"><div class="fi">🍫</div><div><div class="fn">生巧克力</div><div class="fs">大人濃郁</div></div><span class="ck">✓</span></div>
+    <div class="fc" id="f1"><div class="fi">🍷</div><div><div class="fn">酒香生巧克力</div><div class="fs">大人系口感</div></div><span class="ck">✓</span></div>
+    <div class="fc" id="f2"><div class="fi">🍮</div><div><div class="fn">法式烤布蕾</div><div class="fs">滿滿香草籽</div></div><span class="ck">✓</span></div>
+    <div class="fc" id="f3"><div class="fi">🍓</div><div><div class="fn">覆盆子庫利</div><div class="fs">100%果泥果凍</div></div><span class="ck">✓</span></div>
+    <div class="fc" id="f4"><div class="fi">🍎</div><div><div class="fn">炒蘋果</div><div class="fs">當季蘋果</div></div><span class="ck">✓</span></div>
+    <div class="fc" id="f5"><div class="fi">🍵</div><div><div class="fn">抹茶生巧克力</div><div class="fs">茶控必選</div></div><span class="ck">✓</span></div>
+    <div class="fc" id="f6"><div class="fi">🧋</div><div><div class="fn">奶茶烤布蕾</div><div class="fs">茶香布蕾</div></div><span class="ck">✓</span></div>
+  </div>
+</div>
+
+<!-- S4 加購 -->
+<div class="sec" id="s4">
+  <div class="stitle">加購項目</div>
+  <div class="shint">水果 4吋+$50 / 6吋+$80</div>
+  <div class="dvdr"><span>🍓 季節水果（擇一）</span></div>
+  <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:12px;">
+    <div class="frc on" id="fr0"><div class="fic">🚫</div><div style="flex:1"><div class="fn2">不加水果</div></div><span class="ck">✓</span></div>
+    <div class="frc" id="fr1"><div class="fic">🍏</div><div style="flex:1"><div class="fn2">無籽葡萄</div></div><div class="frc-price">4吋+$50／6吋+$80</div><span class="ck">✓</span></div>
+    <div class="frc" id="fr2"><div class="fic">🥭</div><div style="flex:1"><div class="fn2">台灣芒果</div><div class="fs2">夏季 5–8 月</div></div><div class="frc-price">4吋+$50／6吋+$80</div><span class="ck">✓</span></div>
+    <div class="frc" id="fr3"><div class="fic">🍓</div><div style="flex:1"><div class="fn2">台灣草莓</div><div class="fs2">冬季 11–4 月</div></div><div class="frc-price">4吋+$50／6吋+$80</div><span class="ck">✓</span></div>
+    <div class="frc" id="fr4"><div class="fic">🍎</div><div style="flex:1"><div class="fn2">炒蘋果</div><div class="fs2">當季蘋果</div></div><div class="frc-price">4吋+$50／6吋+$80</div><span class="ck">✓</span></div>
+  </div>
+  <div class="dvdr"><span>🍷 豪酒專區</span></div>
+  <div class="notice">⚠️ 含酒精，如需駕駛請斟酌考量</div>
+  <div class="g2">
+    <div class="wc on" id="w0"><div class="fic">🚫</div><div style="flex:1"><div class="fn2">不加</div></div><span class="ck" style="color:#8b6b9e">✓</span></div>
+    <div class="wc" id="w1"><div class="fic">🍊</div><div style="flex:1"><div class="fn2">君度橙酒</div></div><span class="ck" style="color:#8b6b9e">✓</span></div>
+    <div class="wc" id="w2"><div class="fic">🌴</div><div style="flex:1"><div class="fn2">黑蘭姆酒</div></div><span class="ck" style="color:#8b6b9e">✓</span></div>
+    <div class="wc" id="w3"><div class="fic">🍒</div><div style="flex:1"><div class="fn2">酒釀櫻桃</div></div><span class="ck" style="color:#8b6b9e">✓</span></div>
+  </div>
+  <div class="dvdr"><span>🍴 叉盤組加購</span></div>
+  <div class="fks">
+    <div class="fkt"><div class="fkil">🍴</div><div><div class="fkn">叉盤組（五入一組）</div><div class="fkb">客製蛋糕已附贈一組 🎁</div><div class="fkf">額外加購每組 +$20</div></div></div>
+    <div class="fkcr">
+      <div class="fkcl">加購數量</div>
+      <div class="fkct"><button class="cb" id="fkM">−</button><div class="cnum" id="fkN">0</div><button class="cb" id="fkP">＋</button></div>
+      <div class="fktl" id="fkL">已附贈1組</div>
+    </div>
+  </div>
+  <div class="skipw"><span class="skipl" id="sk4">完成加購，繼續填寫資訊 →</span></div>
+</div>
+
+<!-- S5 資訊 -->
+<div class="sec" id="s5">
+  <div class="stitle">填寫訂購資訊</div>
+  <div class="shint">確認後產生完整訂單</div>
+  <div class="cprev" id="cprev"></div>
+  <div class="fg">
+    <label>姓名 <span style="color:#c04040">*</span></label>
+    <input class="inp" id="iName" type="text" placeholder="請輸入您的姓名">
+    <div class="err" id="err-name"></div>
+  </div>
+  <div class="fg">
+    <label>聯絡手機（10碼） <span style="color:#c04040">*</span></label>
+    <input class="inp" id="iPhone" type="tel" maxlength="10" inputmode="numeric" placeholder="0912345678">
+    <div class="err" id="err-phone"></div>
+  </div>
+  <div class="fg">
+    <label>📱 聯絡平台暱稱（選填）</label>
+    <div style="display:flex;gap:8px;margin-bottom:8px;">
+      <select class="inp" id="iSocialPlatform" style="flex:0 0 130px;padding:11px 8px;">
+        <option value="FB">💙 Facebook</option>
+        <option value="IG">💗 Instagram</option>
+        <option value="LINE">💚 LINE</option>
+      </select>
+      <input class="inp" id="iSocialHandle" type="text" placeholder="請輸入暱稱或帳號" style="flex:1;">
+    </div>
+    <div style="font-size:13px;color:var(--txl);">方便闆娘主動聯繫確認訂單</div>
+  </div>
+  <div class="fg">
+    <label>🪧 手寫小牌文字（選填）</label>
+    <input class="inp" id="iCard" type="text" placeholder="Happy Birthday" style="-webkit-user-select:text;user-select:text;">
+  </div>
+  <div class="fg">
+    <label>📅 取貨方式 <span style="color:#c04040">*</span></label>
+    <div class="err" id="err-pickup"></div>
+    <div class="ptabs">
+      <div class="ptab on" id="tab-store">🏪<br>自取</div>
+      <div class="ptab" id="tab-meet">🤝<br>面交</div>
+      <div class="ptab" id="tab-dlv" style="font-size:13px;line-height:1.4;">📦 黑貓<br>宅急便<br><span style="color:#d4947a;font-size:13px;font-weight:700;">+$290</span></div>
+    </div>
+    <div class="pdet on" id="det-store">
+      📍 高雄市前金區新田路182號「藏在銀飾店裡的甜點店」<br>
+      🕒 週一～日 下午 2:00–7:00（週三公休）<br>
+      ⚠️ 不接受當日訂購，請至少提前一天
+    </div>
+    <div class="pdet" id="det-meet">
+      📍 面交地點：高雄市前金區新田路182號<br>
+      ⏰ 可選時段：上午 10:00–13:00 / 晚上 19:00–22:00<br>
+      ⚠️ 快要到達時請主動私訊闆娘！
+    </div>
+    <div class="pdet" id="det-dlv">
+      📦 黑貓冷凍宅急便 +$290 · 全程低溫配送<br>
+      ⚠️ 製作＋配送需要 3 個工作天，請提前預訂<br>
+      💳 黑貓宅急便僅支援<strong>匯款</strong>付款，選擇後自動切換
+    </div>
+    <div class="dlvf" id="dlvFields">
+      <div class="dlvt">📦 黑貓冷凍宅急便配送資訊</div>
+      <div class="dlvw">⚠️ 製作＋配送需要 3 個工作天，請提前預訂</div>
+      <div>
+        <div class="dlvlbl">配送日期 <span style="color:#c04040">*</span></div>
+        <input class="inp" id="iDlvDate" type="date">
+        <div class="err" id="err-dlvdate"></div>
+      </div>
+      <div>
+        <div class="dlvlbl">收件人姓名 <span style="color:#c04040">*</span></div>
+        <label class="samechk"><input type="checkbox" id="chkSame"> 同訂購人（姓名＋手機自動帶入）</label>
+        <input class="inp" id="iDlvName" type="text" placeholder="請輸入收件人姓名">
+        <div class="err" id="err-dlvname"></div>
+      </div>
+      <div>
+        <div class="dlvlbl">收件人手機（10碼） <span style="color:#c04040">*</span></div>
+        <input class="inp" id="iDlvPhone" type="tel" maxlength="10" inputmode="numeric" placeholder="0912345678">
+        <div class="err" id="err-dlvphone"></div>
+      </div>
+      <div>
+        <div class="dlvlbl">配送地址 <span style="color:#c04040">*</span></div>
+        <input class="inp" id="iDlvAddr" type="text" placeholder="請輸入完整收件地址（含縣市區）">
+        <div class="err" id="err-dlvaddr"></div>
+      </div>
+      <div>
+        <div class="dlvlbl">到貨時間 <span style="color:#c04040">*</span></div>
+        <select class="inp" id="iDlvTime">
+          <option value="">請選擇到貨時間</option>
+          <option value="上午（09:00–12:00）">上午（09:00–12:00）</option>
+          <option value="下午（14:00–18:00）">下午（14:00–18:00）</option>
+        </select>
+        <div class="err" id="err-dlvtime"></div>
+      </div>
+      <div>
+        <div class="dlvlbl">匯款帳號末五碼 <span style="color:#c04040">*</span></div>
+        <input class="inp" id="iDlvLast5" type="text" maxlength="5" inputmode="numeric" placeholder="例：23922">
+        <div class="err" id="err-dlvlast5"></div>
+        <div style="font-size:13px;color:var(--txl);margin-top:4px;">請填寫匯款帳戶末五碼供店家確認</div>
+      </div>
+    </div>
+    <div id="pickDateGroup">
+      <div class="dlvlbl" style="margin-top:8px;">取貨日期 <span style="color:#c04040">*</span></div>
+      <input class="inp" id="iDate" type="date">
+      <div class="err" id="err-date"></div>
+      <div id="meetTimeGroup" style="display:none;margin-top:8px;">
+        <div class="dlvlbl">面交時間 <span style="color:#c04040">*</span></div>
+        <select class="inp" id="iMeetSlot"><option value="">請先選取貨日期</option></select>
+        <div class="err" id="err-meet"></div>
+      </div>
+    </div>
+  </div>
+  <div class="fg">
+    <label>💳 付款方式 <span style="color:#c04040">*</span></label>
+    <div class="err" id="err-pay"></div>
+    <div class="paytabs">
+      <div class="paytab on" id="pay-cash">💵 當日付現</div>
+      <div class="paytab" id="pay-transfer">🏦 匯款</div>
+    </div>
+    <div class="tfc" id="tfBox">
+      <div class="tft">🏦 匯款資訊</div>
+      <div class="tfr"><span class="tfl">戶名</span><span class="tfv">周婉玲</span></div>
+      <div class="tfr"><span class="tfl">帳號</span><span class="tfv">699503223922</span></div>
+      <div class="tfr"><span class="tfl">銀行</span><span class="tfv">013 國泰世華</span></div>
+      <div class="tfr"><span class="tfl">商行</span><span class="tfv">吉門商行</span></div>
+      <div class="tfn">💬 匯款後請告知卡號末五碼以方便確認喔 😆</div>
+    </div>
+  </div>
+  <div class="fg">
+    <label>💬 備注（其他需求）</label>
+    <input class="inp" id="iNote" type="text" placeholder="例：過敏食材、特殊造型需求…">
+  </div>
+  <button class="bnx" id="genBtn" style="width:100%;margin-top:4px;font-family:inherit;">✨ 產生訂單</button>
+</div>
+
+<!-- S6 訂單 -->
+<div class="sec" id="s6">
+  <div style="text-align:center;padding:16px 0 12px">
+    <div style="font-size:56px;margin-bottom:8px">🎉</div>
+    <div class="stitle">訂單已產生！</div>
+    <div class="shint">複製訂單後傳送給店家</div>
+  </div>
+
+  <!-- 修改按鈕 -->
+  <div class="ebann">
+    <div class="ebant">✏️ 需要修改？點選對應步驟</div>
+    <div class="ebanr">
+      <button class="esb" id="e1">📐 尺寸</button>
+      <button class="esb" id="e2">🍦 鮮奶油</button>
+      <button class="esb" id="e3">🍮 內餡</button>
+      <button class="esb" id="e4">🍓 加購</button>
+      <button class="esb" id="e5">📋 資訊</button>
+    </div>
+  </div>
+
+  <!-- 總金額 -->
+  <div class="totc" id="totCard"></div>
+
+  <!-- 匯款資訊卡（選匯款才顯示） -->
+  <div id="tf6" style="display:none;margin-bottom:14px;">
+    <div style="background:linear-gradient(135deg,#fef9ec,#fdf5e4);border:2px solid var(--gdl);border-radius:16px;padding:15px 17px;">
+      <div style="font-size:17px;font-weight:700;color:#8a6020;margin-bottom:8px;">🏦 匯款資訊｜確認訂單後請匯款</div>
+      <div class="tfr"><span class="tfl">戶名</span><span class="tfv">周婉玲</span></div>
+      <div class="tfr"><span class="tfl">帳號</span><span class="tfv">699503223922</span></div>
+      <div class="tfr"><span class="tfl">銀行</span><span class="tfv">013 國泰世華</span></div>
+      <div class="tfr"><span class="tfl">商行</span><span class="tfv">吉門商行</span></div>
+      <div class="tfn" id="tfAmt"></div>
+    </div>
+  </div>
+
+  <!-- 訂單明細 -->
+  <div class="ocard">
+    <div class="ohd"><div class="ohdi">🎂</div><div class="ohdt"><h3>吉門製甜 客製化訂單</h3><p>Jimon</p></div></div>
+    <div class="obody" id="obody"></div>
+  </div>
+
+  <!-- 醒目複製區塊 -->
+  <div style="background:linear-gradient(135deg,#5c7a5a,#8faa8b);border-radius:20px;padding:22px 18px;margin-bottom:16px;box-shadow:0 8px 28px rgba(92,122,90,.4);">
+    <div style="text-align:center;margin-bottom:16px;">
+      <div style="font-size:22px;font-weight:700;color:#fff;margin-bottom:8px;letter-spacing:1px;">📋 複製訂單傳給店家</div>
+      <div style="font-size:15px;color:rgba(255,255,255,.92);line-height:2.2;">
+        ① 點下方按鈕複製<br>② 私訊給闆娘<br>③ 等待確認 ✅
+      </div>
+    </div>
+    <button id="copyBtn" style="width:100%;padding:20px;border-radius:16px;border:3px solid rgba(255,255,255,.5);background:#fff;color:#5c7a5a;font-size:22px;font-weight:700;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.2);display:flex;align-items:center;justify-content:center;gap:12px;font-family:inherit;-webkit-appearance:none;appearance:none;letter-spacing:1px;">
+      📋 點此複製訂單
+    </button>
+  </div>
+
+  <!-- 文字框 -->
+  <div class="copyw">
+    <div class="copylbl">💡 <strong>點一下文字框</strong>自動複製 / 長按手動全選（Android）</div>
+    <textarea id="copyArea" readonly style="-webkit-user-select:all;user-select:all;cursor:pointer;"></textarea>
+  </div>
+
+  <!-- 私訊連結 -->
+  <div class="soc">
+    <div class="sot">📨 複製完成後，點此傳送給闆娘</div>
+    <a class="sol fb" href="https://www.facebook.com/share/1BxR9s1ri9/?mibextid=wwXIfr" target="_blank"><div class="soi">💙</div><div class="sot2"><strong>Facebook 私訊</strong><span>lachoupatisserie（第一推薦）</span></div><div class="soa">›</div></a>
+    <a class="sol ig" href="https://www.instagram.com/jimondessert?igsh=MWYxeG44dmEyczNzcg%3D%3D&utm_source=qr" target="_blank"><div class="soi">💗</div><div class="sot2"><strong>Instagram 私訊</strong><span>@jimondessert</span></div><div class="soa">›</div></a>
+  </div>
+
+  <!-- 地圖 -->
+  <div class="strc">
+    <a href="https://maps.app.goo.gl/ZgAqKFumDZRRhVYv5?g_st=ic" target="_blank" class="strb">
+      <div class="strbi">📍</div><div class="strbt"><strong>點我開啟地圖導航</strong><span>高雄市前金區新田路182號</span></div><div class="strba">›</div>
+    </a>
+    <div class="strib">
+      <div style="font-size:15px;color:var(--tx);margin-bottom:8px">🏪 <strong>藏在銀飾店裡的甜點店</strong>｜新田小北百貨旁邊</div>
+      <div class="scn">🧊 移動距離超過30分鐘，請攜帶 20×20×20 cm 以上的保冷袋</div>
+      <div class="scct">📞 闆娘緊急聯絡</div>
+      <div class="scci"><span>1️⃣</span><span>臉書私訊（第一推薦）</span></div>
+      <div class="scci"><span>2️⃣</span><span>0912-152-727（很急再打喔 QQ）</span></div>
+      <div class="scci"><span>3️⃣</span><span>07-2159152（14:00–19:00）</span></div>
+    </div>
+  </div>
+  <button class="restartbtn" id="rstBtn">← 重新訂購</button>
+</div>
+
+<div class="nav" id="navBar">
+  <button class="bbk" id="bBk" style="display:none">← 上一步</button>
+  <button class="bnx" id="bNx">下一步 →</button>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+
+var CREAM=["經典原味","馬達加斯加香草","日本抹茶（佐藤園）","日本焙茶（佐藤園）","唐寧伯爵紅茶","柚香金萱","柚香紅茶","紅烏龍","文山包種茶","焦糖堅果醬","鹽之花黑芝麻","巧克力","咖啡","太妃糖"];
+var FILL=["生巧克力","酒香生巧克力","法式烤布蕾","覆盆子庫利（果凍）","炒蘋果","抹茶生巧克力","奶茶烤布蕾"];
+var FRUIT=["不加水果","無籽葡萄","台灣芒果","台灣草莓","炒蘋果"];
+var WINE=["不加","君度橙酒","黑蘭姆酒","酒釀櫻桃"];
+var FA={"4吋（2-3人）":50,"6吋（4-6人）":80,"8吋（8-10人）":0};
+var SZ=[["4吋（2-3人）",500],["6吋（4-6人）",750],["8吋（8-10人）",1600]];
+
+var S={step:1,size:"",sizeP:0,cream:"經典原味",fill:"生巧克力",
+  fruit:"不加水果",wine:"不加",forkQ:0,
+  pickMode:"store",date:"",meetSlot:"",
+  dlvDate:"",dlvName:"",dlvPhone:"",dlvAddr:"",dlvTime:"",dlvLast5:"",
+  pay:"cash",name:"",phone:"",card:"",social:"",note:"",total:0};
+
+function calcTotal(){
+  var fr=S.fruit!=="不加水果"?(FA[S.size]||0):0;
+  S.total=S.sizeP+fr+(S.forkQ*20)+(S.pickMode==="dlv"?290:0);
+}
+
+function fmtD(d){return d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2);}
+
+function goStep(n){
+  document.getElementById("s"+S.step).classList.remove("on");
+  S.step=n;
+  document.getElementById("s"+n).classList.add("on");
+  if(n===5)buildPreview();
+  if(n===6)renderOrder();
+  updateUI();
+  window.scrollTo(0,0);
+}
+
+function updateUI(){
+  for(var i=1;i<=5;i++){
+    var d=document.getElementById("d"+i);
+    if(i<S.step){d.className="sd dn";d.textContent="✓";}
+    else if(i===S.step){d.className="sd on";d.textContent=i;}
+    else{d.className="sd";d.textContent=i;}
+    if(i<5)document.getElementById("l"+i).className=i<S.step?"sl dn":"sl";
+  }
+  document.getElementById("pf").style.width=((S.step/6)*100)+"%";
+  document.getElementById("navBar").style.display=(S.step===5||S.step===6)?"none":"flex";
+  document.getElementById("bBk").style.display=S.step>1?"":"none";
+  var nb=document.getElementById("bNx");
+  if(S.step===1)nb.disabled=!S.size;
+  else if(S.step===2)nb.disabled=!S.cream;
+  else if(S.step===3)nb.disabled=!S.fill;
+  else nb.disabled=false;
+}
+
+function buildMeetSlots(val){
+  var sl=document.getElementById("iMeetSlot");
+  sl.innerHTML="<option value=''>請選擇時間段</option>";
+  if(!val)return;
+  [[10,13],[19,22]].forEach(function(r){
+    for(var h=r[0];h<r[1];h++){
+      for(var m=0;m<60;m+=15){
+        var o=document.createElement("option");
+        o.value=o.textContent=("0"+h).slice(-2)+":"+("0"+m).slice(-2);
+        sl.appendChild(o);
+      }
+    }
+    var le=document.createElement("option");
+    le.value=le.textContent=("0"+r[1]).slice(-2)+":00";
+    sl.appendChild(le);
+  });
+}
+
+function setPickMode(mode){
+  S.pickMode=mode;
+  ["store","meet","dlv"].forEach(function(m){
+    var t=document.getElementById("tab-"+m);if(t)t.classList.toggle("on",m===mode);
+    var d=document.getElementById("det-"+m);if(d)d.classList.toggle("on",m===mode);
+  });
+  var df=document.getElementById("dlvFields");
+  if(df)df.classList.toggle("on",mode==="dlv");
+  var pdg=document.getElementById("pickDateGroup");
+  if(pdg)pdg.style.display=mode==="dlv"?"none":"block";
+  var mtg=document.getElementById("meetTimeGroup");
+  if(mtg)mtg.style.display=mode==="meet"?"block":"none";
+  if(mode==="dlv"){
+    S.pay="transfer";
+    var pc=document.getElementById("pay-cash");
+    if(pc){pc.classList.remove("on");pc.style.opacity="0.4";pc.style.pointerEvents="none";}
+    var pt=document.getElementById("pay-transfer");if(pt)pt.classList.add("on");
+    var tb=document.getElementById("tfBox");if(tb)tb.classList.add("on");
+  } else {
+    var pc2=document.getElementById("pay-cash");
+    if(pc2){pc2.style.opacity="";pc2.style.pointerEvents="";}
+  }
+  calcTotal();
+}
+
+function clearErrs(){
+  document.querySelectorAll(".err").forEach(function(e){e.className="err";e.textContent="";});
+  document.querySelectorAll(".inp.err-inp").forEach(function(e){e.classList.remove("err-inp");});
+}
+function showErr(id,msg,inpId){
+  var e=document.getElementById(id);
+  if(e){e.textContent="⚠️ "+msg;e.className="err show";}
+  if(inpId){var i=document.getElementById(inpId);if(i)i.classList.add("err-inp");}
+}
+function clearErr(id,inpId){
+  var e=document.getElementById(id);if(e){e.className="err";e.textContent="";}
+  if(inpId){var i=document.getElementById(inpId);if(i)i.classList.remove("err-inp");}
+}
+
+function buildPreview(){
+  var t="<span class='tg'>"+S.size+"</span><span class='tg'>"+S.cream+"</span>";
+  if(S.fill)t+="<span class='tg g'>"+S.fill+"</span>";
+  if(S.fruit!=="不加水果")t+="<span class='tg b'>"+S.fruit+"</span>";
+  if(S.wine!=="不加")t+="<span class='tg p'>"+S.wine+"</span>";
+  if(S.pickMode==="dlv")t+="<span class='tg' style='background:#f0f0f0;color:#333'>📦宅配</span>";
+  if(S.forkQ>0)t+="<span class='tg'>叉盤×"+S.forkQ+"</span>";
+  document.getElementById("cprev").innerHTML="<div class='cpi'>🎂</div><div style='flex:1'><div style='font-size:16px;font-weight:700'>您的蛋糕</div><div style='margin-top:3px'>"+t+"</div></div>";
+}
+
+function validate5(){
+  clearErrs();
+  var ok=true;
+  S.name=document.getElementById("iName").value.trim();
+  S.phone=document.getElementById("iPhone").value.replace(/\D/g,"");
+  S.card=document.getElementById("iCard").value.trim();
+  var sp=document.getElementById("iSocialPlatform");
+  var sh=document.getElementById("iSocialHandle");
+  S.social=(sp&&sh&&sh.value.trim())?(sp.value+" "+sh.value.trim()):"";
+  S.note=document.getElementById("iNote").value.trim();
+  if(!S.name){showErr("err-name","請填寫姓名","iName");ok=false;}
+  if(S.phone.length!==10){showErr("err-phone","請輸入10碼手機號碼","iPhone");ok=false;}
+  if(!S.pickMode){showErr("err-pickup","請選擇取貨方式");ok=false;}
+  if(S.pickMode==="store"||S.pickMode==="meet"){
+    var dv=document.getElementById("iDate").value;
+    if(!dv){showErr("err-date","請選擇取貨日期","iDate");ok=false;}
+    else{
+      var ch=new Date(dv+"T00:00:00"),td=new Date();td.setHours(0,0,0,0);
+      if(ch<=td){showErr("err-date","不接受當日訂購，請選擇明天或以後","iDate");ok=false;}
+      else if(ch.getDay()===3){showErr("err-date","每週三公休，請選擇其他日期","iDate");ok=false;}
+      else S.date=dv.replace(/-/g,"/");
+    }
+    if(S.pickMode==="meet"){
+      S.meetSlot=document.getElementById("iMeetSlot").value;
+      if(!S.meetSlot){showErr("err-meet","請選擇面交時間段","iMeetSlot");ok=false;}
+    }
+  }
+  if(S.pickMode==="dlv"){
+    var dd=document.getElementById("iDlvDate").value;
+    var dn=document.getElementById("iDlvName").value.trim();
+    var dp=document.getElementById("iDlvPhone").value.replace(/\D/g,"");
+    var da=document.getElementById("iDlvAddr").value.trim();
+    var dt=document.getElementById("iDlvTime").value;
+    var dl=document.getElementById("iDlvLast5").value.trim();
+    if(!dd){showErr("err-dlvdate","請選擇配送日期","iDlvDate");ok=false;}
+    else{
+      var minD=new Date();minD.setDate(minD.getDate()+3);minD.setHours(0,0,0,0);
+      if(new Date(dd+"T00:00:00")<minD){showErr("err-dlvdate","配送日期需在3個工作天後","iDlvDate");ok=false;}
+      else S.dlvDate=dd.replace(/-/g,"/");
+    }
+    if(!dn){showErr("err-dlvname","請填寫收件人姓名","iDlvName");ok=false;}
+    if(dp.length!==10){showErr("err-dlvphone","請輸入10碼手機號碼","iDlvPhone");ok=false;}
+    if(!da){showErr("err-dlvaddr","請填寫完整配送地址","iDlvAddr");ok=false;}
+    if(!dt){showErr("err-dlvtime","請選擇到貨時間","iDlvTime");ok=false;}
+    if(!dl){showErr("err-dlvlast5","請填寫匯款帳號末五碼","iDlvLast5");ok=false;}
+    if(ok){S.dlvName=dn;S.dlvPhone=dp;S.dlvAddr=da;S.dlvTime=dt;S.dlvLast5=dl;}
+  }
+  if(!S.pay){showErr("err-pay","請選擇付款方式");ok=false;}
+  if(!ok){var first=document.querySelector(".err.show");if(first)first.scrollIntoView({behavior:"smooth",block:"center"});}
+  return ok;
+}
+
+function renderOrder(){
+  calcTotal();
+  var fa=S.fruit!=="不加水果"?(FA[S.size]||0):0;
+  var frStr=S.fruit!=="不加水果"?S.fruit+"（+$"+fa+"）":"不加水果";
+  var fkStr=S.forkQ>0?"加購"+S.forkQ+"組（+$"+(S.forkQ*20)+"），含贈1組共"+(S.forkQ+1)+"組":"不加購（已附贈1組）";
+  var dlvStr=S.pickMode==="dlv"?"黑貓冷凍宅配（+$290）":"不需要";
+  var payStr=S.pay==="cash"?"當日付現":"匯款";
+  var pickup="";
+  if(S.pickMode==="store")pickup=S.date+"（自取）";
+  else if(S.pickMode==="meet")pickup=S.date+" "+S.meetSlot+"（面交：高雄市前金區新田路182號）";
+  else pickup="黑貓宅急便配送 "+S.dlvDate;
+  var tc="<div class='tl main'><span>🎂 蛋糕基本價（"+S.size+"）</span><span>$"+S.sizeP+"</span></div>";
+  if(fa>0)tc+="<div class='tl'><span>🍓 季節水果</span><span>+$"+fa+"</span></div>";
+  if(S.pickMode==="dlv")tc+="<div class='tl'><span>📦 黑貓冷凍宅配</span><span>+$290</span></div>";
+  if(S.forkQ>0)tc+="<div class='tl'><span>🍴 叉盤組 ×"+S.forkQ+"</span><span>+$"+(S.forkQ*20)+"</span></div>";
+  tc+="<div class='tdiv'></div><div class='tfin'><span class='tlab'>💰 合計</span><span class='tamt'>$"+S.total+"</span></div>";
+  document.getElementById("totCard").innerHTML=tc;
+  var tf6=document.getElementById("tf6");
+  if(S.pay==="transfer"&&tf6){
+    tf6.style.display="block";
+    document.getElementById("tfAmt").innerHTML="💰 應匯款金額：<strong style='font-size:20px;color:var(--sgd)'>$"+S.total+"</strong><br>匯款後請告知卡號末五碼以方便確認喔 😆";
+  }else if(tf6)tf6.style.display="none";
+  var rows=[["🎂 尺寸",S.size+"（$"+S.sizeP+"）"],["🍦 鮮奶油",S.cream],["🍮 內餡",S.fill],
+    ["🍓 水果",frStr],["🍷 豪酒",S.wine],["📦 宅配",dlvStr],["🍴 叉盤組",fkStr],
+    ["🪧 小牌文字",S.card||"（無）"],["📅 取貨時間",pickup],["💳 付款方式",payStr],
+    ["📱 FB/IG/LINE",S.social||"（無）"],["👤 姓名",S.name],["📱 電話",S.phone],["💬 備注",S.note||"（無）"]];
+  if(S.pickMode==="dlv"){rows.splice(9,0,
+    ["📅 配送日期",S.dlvDate],["👤 收件人",S.dlvName],["📱 收件手機",S.dlvPhone],
+    ["🏠 配送地址",S.dlvAddr],["⏰ 到貨時間",S.dlvTime],["💳 帳號末五碼",S.dlvLast5]);}
+  document.getElementById("obody").innerHTML=rows.map(function(r){
+    return "<div class='orrow'><span class='ol'>"+r[0]+"</span><span class='ov'>"+r[1]+"</span></div>";
+  }).join("");
+  var tfBlock=S.pay==="transfer"?"\n─────────────────\n🏦 匯款資訊\n戶名：周婉玲\n帳號：699503223922\n銀行：013 國泰世華（吉門商行）\n應匯金額：$"+S.total+"\n匯款後請告知卡號末五碼 😆":"";
+  var dlvBlock=S.pickMode==="dlv"?"\n📅 配送日期："+S.dlvDate+"\n👤 收件人："+S.dlvName+"\n📱 收件手機："+S.dlvPhone+"\n🏠 配送地址："+S.dlvAddr+"\n⏰ 到貨時間："+S.dlvTime+"\n💳 帳號末五碼："+S.dlvLast5:"";
+  var pNote=S.pickMode==="meet"?"\n⚠️ 快到前請主動私訊闆娘！":"";
+  var txt="【吉門製甜 客製化蛋糕訂單】\nJimon\n─────────────────\n🎂 尺寸："+S.size+"（$"+S.sizeP+"）\n🍦 鮮奶油口味："+S.cream+"\n🍮 風味內餡："+S.fill+"\n🍓 季節水果："+frStr+"\n🍷 豪酒："+S.wine+"\n📦 宅配："+dlvStr+"\n🍴 叉盤組："+fkStr+"\n🪧 手寫小牌："+(S.card||"（無）")+"\n─────────────────\n💰 合計：$"+S.total+"\n💳 付款方式："+payStr+tfBlock+"\n─────────────────\n📅 取貨時間："+pickup+pNote+dlvBlock+"\n📱 FB/IG/LINE："+(S.social||"（無）")+"\n👤 訂購人："+S.name+"\n📱 聯絡電話："+S.phone+"\n💬 備注："+(S.note||"（無）")+"\n─────────────────\nIG / FB：lachoupatisserie";
+  document.getElementById("copyArea").value=txt;
+}
+
+function selAll(ta){ta.focus();ta.select();try{ta.setSelectionRange(0,99999);}catch(e){}}
+function doCopy(){
+  var ta=document.getElementById("copyArea");
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(ta.value).then(function(){showToast("✓ 已複製！請傳送給店家");}).catch(function(){fbCopy(ta);});
+  }else fbCopy(ta);
+}
+function fbCopy(ta){selAll(ta);try{document.execCommand("copy");showToast("✓ 已複製！請傳送給店家");}catch(e){showToast("請長按文字框手動複製");}}
+function showToast(msg){var t=document.getElementById("toast");t.textContent=msg;t.classList.add("on");setTimeout(function(){t.classList.remove("on");},2800);}
+
+function doRestart(){
+  clearErrs();
+  var kn=document.getElementById("iName").value.trim();
+  var kp=document.getElementById("iPhone").value.replace(/\D/g,"");
+  S={step:1,size:"",sizeP:0,cream:"經典原味",fill:"生巧克力",
+    fruit:"不加水果",wine:"不加",forkQ:0,
+    pickMode:"store",date:"",meetSlot:"",
+    dlvDate:"",dlvName:"",dlvPhone:"",dlvAddr:"",dlvTime:"",dlvLast5:"",
+    pay:"cash",name:kn,phone:kp,card:"",social:"",note:"",total:0};
+  ["sz4","sz6","sz8"].forEach(function(id){var e=document.getElementById(id);if(e)e.classList.remove("on");});
+  for(var i=0;i<=13;i++){var e=document.getElementById("c"+i);if(e)e.classList.remove("on");}
+  document.getElementById("c0").classList.add("on");
+  for(var i=0;i<=6;i++){var e=document.getElementById("f"+i);if(e)e.classList.remove("on");}
+  document.getElementById("f0").classList.add("on");
+  for(var i=0;i<=4;i++){var e=document.getElementById("fr"+i);if(e)e.classList.remove("on");}
+  document.getElementById("fr0").classList.add("on");
+  for(var i=0;i<=3;i++){var e=document.getElementById("w"+i);if(e)e.classList.remove("on");}
+  document.getElementById("w0").classList.add("on");
+  document.getElementById("fkN").textContent="0";
+  document.getElementById("fkL").textContent="已附贈1組";
+  setPickMode("store");
+  var pc=document.getElementById("pay-cash");if(pc){pc.classList.add("on");pc.style.opacity="";pc.style.pointerEvents="";}
+  var pt=document.getElementById("pay-transfer");if(pt)pt.classList.remove("on");
+  var tb=document.getElementById("tfBox");if(tb)tb.classList.remove("on");
+  var tf6=document.getElementById("tf6");if(tf6)tf6.style.display="none";
+  ["iCard","iSocialHandle","iNote","iDate","iDlvDate","iDlvName","iDlvPhone","iDlvAddr","iDlvLast5"].forEach(function(id){var e=document.getElementById(id);if(e)e.value="";});
+  var msl=document.getElementById("iMeetSlot");if(msl)msl.innerHTML="<option value=''>請先選取貨日期</option>";
+  var dts=document.getElementById("iDlvTime");if(dts)dts.value="";
+  var cs=document.getElementById("chkSame");if(cs)cs.checked=false;
+  var dna=document.getElementById("iDlvName");if(dna){dna.readOnly=false;dna.style.background="";}
+  var dph=document.getElementById("iDlvPhone");if(dph){dph.readOnly=false;dph.style.background="";}
+  var ca=document.getElementById("copyArea");if(ca)ca.value="";
+  for(var i=1;i<=6;i++)document.getElementById("s"+i).classList.remove("on");
+  document.getElementById("s1").classList.add("on");
+  updateUI();window.scrollTo(0,0);
+}
+
+window.addEventListener("DOMContentLoaded",function(){
+  var t1=new Date();t1.setDate(t1.getDate()+1);
+  var t3=new Date();t3.setDate(t3.getDate()+3);
+  var id=document.getElementById("iDate");if(id)id.min=fmtD(t1);
+  var dd=document.getElementById("iDlvDate");if(dd)dd.min=fmtD(t3);
+
+  // Size - 直接綁定
+  [["sz4",0],["sz6",1],["sz8",2]].forEach(function(pair){
+    var el=document.getElementById(pair[0]);
+    if(!el)return;
+    el.addEventListener("click",function(){
+      ["sz4","sz6","sz8"].forEach(function(id){document.getElementById(id).classList.remove("on");});
+      el.classList.add("on");
+      S.size=SZ[pair[1]][0];S.sizeP=SZ[pair[1]][1];
+      updateUI();setTimeout(function(){goStep(2);},250);
+    });
+  });
+
+  // Cream c0-c13
+  for(var i=0;i<=13;i++){(function(idx){
+    var el=document.getElementById("c"+idx);if(!el)return;
+    el.addEventListener("click",function(){
+      for(var j=0;j<=13;j++){var e=document.getElementById("c"+j);if(e)e.classList.remove("on");}
+      el.classList.add("on");S.cream=CREAM[idx];updateUI();
+    });
+  })(i);}
+
+  // Fill f0-f6
+  for(var i=0;i<=6;i++){(function(idx){
+    var el=document.getElementById("f"+idx);if(!el)return;
+    el.addEventListener("click",function(){
+      for(var j=0;j<=6;j++){var e=document.getElementById("f"+j);if(e)e.classList.remove("on");}
+      el.classList.add("on");S.fill=FILL[idx];updateUI();
+    });
+  })(i);}
+
+  // Fruit fr0-fr4
+  for(var i=0;i<=4;i++){(function(idx){
+    var el=document.getElementById("fr"+idx);if(!el)return;
+    el.addEventListener("click",function(){
+      for(var j=0;j<=4;j++){var e=document.getElementById("fr"+j);if(e)e.classList.remove("on");}
+      el.classList.add("on");S.fruit=FRUIT[idx];calcTotal();
+    });
+  })(i);}
+
+  // Wine w0-w3
+  for(var i=0;i<=3;i++){(function(idx){
+    var el=document.getElementById("w"+idx);if(!el)return;
+    el.addEventListener("click",function(){
+      for(var j=0;j<=3;j++){var e=document.getElementById("w"+j);if(e)e.classList.remove("on");}
+      el.classList.add("on");S.wine=WINE[idx];
+    });
+  })(i);}
+
+  // Fork
+  document.getElementById("fkM").addEventListener("click",function(){
+    if(S.forkQ>0)S.forkQ--;
+    document.getElementById("fkN").textContent=S.forkQ;
+    document.getElementById("fkL").textContent=S.forkQ===0?"已附贈1組":"費用+$"+(S.forkQ*20)+"（共"+(S.forkQ+1)+"組）";
+    calcTotal();
+  });
+  document.getElementById("fkP").addEventListener("click",function(){
+    S.forkQ++;
+    document.getElementById("fkN").textContent=S.forkQ;
+    document.getElementById("fkL").textContent="費用+$"+(S.forkQ*20)+"（共"+(S.forkQ+1)+"組）";
+    calcTotal();
+  });
+  document.getElementById("sk4").addEventListener("click",function(){goStep(5);});
+
+  // Pickup tabs
+  document.getElementById("tab-store").addEventListener("click",function(){setPickMode("store");});
+  document.getElementById("tab-meet").addEventListener("click",function(){setPickMode("meet");});
+  document.getElementById("tab-dlv").addEventListener("click",function(){setPickMode("dlv");});
+
+  // iDate
+  document.getElementById("iDate").addEventListener("change",function(){
+    clearErr("err-date","iDate");
+    if(S.pickMode==="meet")buildMeetSlots(this.value);
+  });
+  document.getElementById("iMeetSlot").addEventListener("change",function(){clearErr("err-meet","iMeetSlot");});
+
+  // chkSame
+  document.getElementById("chkSame").addEventListener("change",function(){
+    var nm=document.getElementById("iDlvName");
+    var ph=document.getElementById("iDlvPhone");
+    if(this.checked){
+      if(nm){nm.value=document.getElementById("iName").value.trim();nm.readOnly=true;nm.style.background="#f0f5ef";}
+      if(ph){ph.value=document.getElementById("iPhone").value.replace(/\D/g,"");ph.readOnly=true;ph.style.background="#f0f5ef";}
+    }else{
+      if(nm){nm.value="";nm.readOnly=false;nm.style.background="";}
+      if(ph){ph.value="";ph.readOnly=false;ph.style.background="";}
+    }
+  });
+
+  // Live clear errors
+  [["iName","err-name"],["iPhone","err-phone"],["iDlvName","err-dlvname"],
+   ["iDlvPhone","err-dlvphone"],["iDlvAddr","err-dlvaddr"],["iDlvLast5","err-dlvlast5"]
+  ].forEach(function(p){
+    var el=document.getElementById(p[0]);
+    if(el)el.addEventListener("input",function(){clearErr(p[1],p[0]);});
+  });
+  [["iDlvDate","err-dlvdate"],["iDlvTime","err-dlvtime"]].forEach(function(p){
+    var el=document.getElementById(p[0]);
+    if(el)el.addEventListener("change",function(){clearErr(p[1],p[0]);});
+  });
+
+  // Payment
+  document.getElementById("pay-cash").addEventListener("click",function(){
+    S.pay="cash";
+    this.classList.add("on");
+    document.getElementById("pay-transfer").classList.remove("on");
+    document.getElementById("tfBox").classList.remove("on");
+  });
+  document.getElementById("pay-transfer").addEventListener("click",function(){
+    S.pay="transfer";
+    this.classList.add("on");
+    document.getElementById("pay-cash").classList.remove("on");
+    document.getElementById("tfBox").classList.add("on");
+  });
+
+  // Nav
+  document.getElementById("bNx").addEventListener("click",function(){if(S.step<6)goStep(S.step+1);});
+  document.getElementById("bBk").addEventListener("click",function(){if(S.step>1)goStep(S.step-1);});
+  document.getElementById("genBtn").addEventListener("click",function(){if(validate5())goStep(6);});
+
+  // Edit buttons
+  [1,2,3,4,5].forEach(function(n){
+    document.getElementById("e"+n).addEventListener("click",function(){goStep(n);});
+  });
+
+  // Copy
+  document.getElementById("copyBtn").addEventListener("click",doCopy);
+  document.getElementById("copyArea").addEventListener("click",function(){selAll(this);doCopy();});
+  document.getElementById("copyArea").addEventListener("touchstart",function(e){e.preventDefault();selAll(this);doCopy();});
+
+  // Restart
+  document.getElementById("rstBtn").addEventListener("click",doRestart);
+
+  updateUI();
+});
+
+</script>
+</body>
+</html>
