@@ -132,6 +132,20 @@ body{background:var(--cr);color:var(--tx);min-height:100vh;}
 .skipw{text-align:center;margin:10px 0 0;}.skipl{font-size:15px;color:var(--txl);cursor:pointer;text-decoration:underline;}
 .toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--sgd);color:#fff;padding:11px 26px;border-radius:100px;font-size:15px;z-index:9999;white-space:nowrap;transition:transform .3s;pointer-events:none;}
 .toast.on{transform:translateX(-50%) translateY(0);}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9000;display:none;align-items:flex-end;justify-content:center;}
+.overlay.on{display:flex;}
+.modal{background:#fff;border-radius:24px 24px 0 0;padding:28px 20px 40px;width:100%;max-width:500px;animation:slideUp .3s ease;}
+@keyframes slideUp{from{transform:translateY(100%);}to{transform:translateY(0);}}
+.modal-title{font-size:20px;font-weight:700;color:var(--sgd);text-align:center;margin-bottom:6px;}
+.modal-sub{font-size:14px;color:var(--txl);text-align:center;margin-bottom:20px;line-height:1.6;}
+.modal-btn{display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:16px;text-decoration:none;margin-bottom:12px;font-size:16px;font-weight:700;}
+.modal-btn.fb{background:#f0f4ff;border:2px solid #c8d4f8;color:#3b5998;}
+.modal-btn.ig{background:#fef0f8;border:2px solid #f8d4ec;color:#c13584;}
+.modal-btn.skip{background:#f5f0e8;border:2px solid var(--bd);color:var(--txl);justify-content:center;font-size:14px;}
+.modal-icon{font-size:28px;flex-shrink:0;}
+.modal-txt strong{display:block;font-size:16px;}
+.modal-txt span{font-size:13px;opacity:.75;}
+.modal-arrow{margin-left:auto;font-size:18px;opacity:.5;}
 .err{font-size:13px;color:#c04040;margin-top:4px;display:none;}
 .err.show{display:block;}
 .inp.err-inp{border-color:#c04040;background:#fff8f8;}
@@ -375,10 +389,23 @@ body{background:var(--cr);color:var(--tx);min-height:100vh;}
 
 <!-- S6 訂單 -->
 <div class="sec" id="s6">
-  <div style="text-align:center;padding:16px 0 12px">
-    <div style="font-size:56px;margin-bottom:8px">🎉</div>
-    <div class="stitle">訂單已產生！</div>
-    <div class="shint">複製訂單後傳送給店家</div>
+  <div style="text-align:center;padding:16px 0 8px">
+    <div style="font-size:56px;margin-bottom:6px">🎉</div>
+    <div class="stitle">用心挑選的蛋糕已完成 🎂</div>
+    <div class="shint">複製訂單後傳送給闆娘</div>
+  </div>
+
+  <!-- 複製按鈕：最頂部，第一眼就看到 -->
+  <div style="background:linear-gradient(135deg,#5c7a5a,#8faa8b);border-radius:20px;padding:22px 18px;margin-bottom:16px;box-shadow:0 8px 28px rgba(92,122,90,.4);">
+    <div style="text-align:center;margin-bottom:16px;">
+      <div style="font-size:22px;font-weight:700;color:#fff;margin-bottom:8px;letter-spacing:1px;">📋 複製訂單傳給店家</div>
+      <div style="font-size:15px;color:rgba(255,255,255,.92);line-height:2.2;">
+        ① 點下方按鈕複製<br>② 私訊給闆娘<br>③ 等待確認 ✅
+      </div>
+    </div>
+    <button id="copyBtn" style="width:100%;padding:20px;border-radius:16px;border:3px solid rgba(255,255,255,.5);background:#fff;color:#5c7a5a;font-size:22px;font-weight:700;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.2);display:flex;align-items:center;justify-content:center;gap:12px;font-family:inherit;-webkit-appearance:none;appearance:none;letter-spacing:1px;">
+      📋 點此複製訂單
+    </button>
   </div>
 
   <!-- 修改按鈕 -->
@@ -396,7 +423,7 @@ body{background:var(--cr);color:var(--tx);min-height:100vh;}
   <!-- 總金額 -->
   <div class="totc" id="totCard"></div>
 
-  <!-- 匯款資訊卡（選匯款才顯示） -->
+  <!-- 匯款資訊卡 -->
   <div id="tf6" style="display:none;margin-bottom:14px;">
     <div style="background:linear-gradient(135deg,#fef9ec,#fdf5e4);border:2px solid var(--gdl);border-radius:16px;padding:15px 17px;">
       <div style="font-size:17px;font-weight:700;color:#8a6020;margin-bottom:8px;">🏦 匯款資訊｜確認訂單後請匯款</div>
@@ -412,19 +439,6 @@ body{background:var(--cr);color:var(--tx);min-height:100vh;}
   <div class="ocard">
     <div class="ohd"><div class="ohdi">🎂</div><div class="ohdt"><h3>吉門製甜 客製化訂單</h3><p>Jimon</p></div></div>
     <div class="obody" id="obody"></div>
-  </div>
-
-  <!-- 醒目複製區塊 -->
-  <div style="background:linear-gradient(135deg,#5c7a5a,#8faa8b);border-radius:20px;padding:22px 18px;margin-bottom:16px;box-shadow:0 8px 28px rgba(92,122,90,.4);">
-    <div style="text-align:center;margin-bottom:16px;">
-      <div style="font-size:22px;font-weight:700;color:#fff;margin-bottom:8px;letter-spacing:1px;">📋 複製訂單傳給店家</div>
-      <div style="font-size:15px;color:rgba(255,255,255,.92);line-height:2.2;">
-        ① 點下方按鈕複製<br>② 私訊給闆娘<br>③ 等待確認 ✅
-      </div>
-    </div>
-    <button id="copyBtn" style="width:100%;padding:20px;border-radius:16px;border:3px solid rgba(255,255,255,.5);background:#fff;color:#5c7a5a;font-size:22px;font-weight:700;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.2);display:flex;align-items:center;justify-content:center;gap:12px;font-family:inherit;-webkit-appearance:none;appearance:none;letter-spacing:1px;">
-      📋 點此複製訂單
-    </button>
   </div>
 
   <!-- 文字框 -->
@@ -462,6 +476,24 @@ body{background:var(--cr);color:var(--tx);min-height:100vh;}
   <button class="bnx" id="bNx">下一步 →</button>
 </div>
 <div class="toast" id="toast"></div>
+
+<div class="overlay" id="sendOverlay">
+  <div class="modal">
+    <div class="modal-title">✅ 訂單已複製！</div>
+    <div class="modal-sub">請立即傳送給闆娘<br>確認訂單才算完成喔 😊</div>
+    <a class="modal-btn fb" href="https://www.facebook.com/share/1BxR9s1ri9/?mibextid=wwXIfr" target="_blank">
+      <div class="modal-icon">💙</div>
+      <div class="modal-txt"><strong>Facebook 私訊</strong><span>lachoupatisserie（第一推薦）</span></div>
+      <div class="modal-arrow">›</div>
+    </a>
+    <a class="modal-btn ig" href="https://www.instagram.com/jimondessert?igsh=MWYxeG44dmEyczNzcg%3D%3D&utm_source=qr" target="_blank">
+      <div class="modal-icon">💗</div>
+      <div class="modal-txt"><strong>Instagram 私訊</strong><span>@jimondessert</span></div>
+      <div class="modal-arrow">›</div>
+    </a>
+    <div class="modal-btn skip" id="overlayClose">稍後再傳</div>
+  </div>
+</div>
 
 <script>
 
@@ -672,13 +704,17 @@ function renderOrder(){
 }
 
 function selAll(ta){ta.focus();ta.select();try{ta.setSelectionRange(0,99999);}catch(e){}}
+function showOverlay(){
+  var ov=document.getElementById("sendOverlay");
+  if(ov)ov.classList.add("on");
+}
 function doCopy(){
   var ta=document.getElementById("copyArea");
   if(navigator.clipboard&&navigator.clipboard.writeText){
-    navigator.clipboard.writeText(ta.value).then(function(){showToast("✓ 已複製！請傳送給店家");}).catch(function(){fbCopy(ta);});
+    navigator.clipboard.writeText(ta.value).then(function(){showOverlay();}).catch(function(){fbCopy(ta);});
   }else fbCopy(ta);
 }
-function fbCopy(ta){selAll(ta);try{document.execCommand("copy");showToast("✓ 已複製！請傳送給店家");}catch(e){showToast("請長按文字框手動複製");}}
+function fbCopy(ta){selAll(ta);try{document.execCommand("copy");showOverlay();}catch(e){showToast("請長按文字框手動複製");}}
 function showToast(msg){var t=document.getElementById("toast");t.textContent=msg;t.classList.add("on");setTimeout(function(){t.classList.remove("on");},2800);}
 
 function doRestart(){
@@ -855,6 +891,10 @@ window.addEventListener("DOMContentLoaded",function(){
 
   // Restart
   document.getElementById("rstBtn").addEventListener("click",doRestart);
+  var oc=document.getElementById("overlayClose");
+  if(oc)oc.addEventListener("click",function(){document.getElementById("sendOverlay").classList.remove("on");});
+  var ov=document.getElementById("sendOverlay");
+  if(ov)ov.addEventListener("click",function(e){if(e.target===ov)ov.classList.remove("on");});
 
   updateUI();
 });
