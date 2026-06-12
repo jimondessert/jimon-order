@@ -301,7 +301,7 @@ body{background:var(--cr);color:var(--tx);min-height:100vh;}
     <div class="pdet on" id="det-store">
       📍 高雄市前金區新田路182號「藏在銀飾店裡的甜點店」<br>
       🕒 週一～日 下午 2:00–7:00（週三公休）<br>
-      ⚠️ 不接受當日訂購，請至少提前一天
+      ⚠️ 不接受當日訂購，請至少提前 24 小時預訂
     </div>
     <div class="pdet" id="det-meet">
       📍 面交地點：高雄市前金區新田路182號<br>
@@ -629,8 +629,10 @@ function validate5(){
     var dv=document.getElementById("iDate").value;
     if(!dv){showErr("err-date","請選擇取貨日期","iDate");ok=false;}
     else{
-      var ch=new Date(dv+"T00:00:00"),td=new Date();td.setHours(0,0,0,0);
-      if(ch<=td){showErr("err-date","不接受當日訂購，請選擇明天或以後","iDate");ok=false;}
+      var ch=new Date(dv+"T00:00:00");
+      var now=new Date();
+      var min24=new Date(now.getTime()+24*60*60*1000);
+      if(ch<min24){showErr("err-date","不接受當日訂購，請至少提前 24 小時預訂","iDate");ok=false;}
       else if(ch.getDay()===3){showErr("err-date","每週三公休，請選擇其他日期","iDate");ok=false;}
       else S.date=dv.replace(/-/g,"/");
     }
@@ -755,7 +757,7 @@ function doRestart(){
 }
 
 window.addEventListener("DOMContentLoaded",function(){
-  var t1=new Date();t1.setDate(t1.getDate()+1);
+  var t1=new Date(new Date().getTime()+24*60*60*1000);
   var t3=new Date();t3.setDate(t3.getDate()+3);
   var id=document.getElementById("iDate");if(id)id.min=fmtD(t1);
   var dd=document.getElementById("iDlvDate");if(dd)dd.min=fmtD(t3);
