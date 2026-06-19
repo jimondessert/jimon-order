@@ -358,10 +358,11 @@ body{background:var(--cr);color:var(--tx);min-height:100vh;}
   <div class="fg">
     <label>📅 取貨方式 <span style="color:#c04040">*</span></label>
     <div class="err" id="err-pickup"></div>
-    <div class="ptabs">
-      <div class="ptab on" id="tab-store">🏪<br>自取</div>
-      <div class="ptab" id="tab-meet">🤝<br>面交</div>
-      <div class="ptab" id="tab-dlv" style="font-size:13px;line-height:1.4;">📦 黑貓<br>宅急便<br><span style="color:#d4947a;font-size:13px;font-weight:700;">+$290</span></div>
+    <div style="display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap;">
+      <div class="ptab on" id="tab-store" style="flex:1;min-width:70px;">🏪<br>自取</div>
+      <div class="ptab" id="tab-meet" style="flex:1;min-width:70px;">🤝<br>面交</div>
+      <div class="ptab" id="tab-dlv" style="flex:1;min-width:70px;font-size:12px;line-height:1.4;">📦 黑貓<br>宅急便<br><span style="color:#d4947a;font-size:11px;font-weight:700;">+$290</span></div>
+      <div class="ptab" id="tab-lala" style="flex:1;min-width:70px;font-size:12px;line-height:1.4;">🛵 Lalamove<br>市區配送<br><span style="color:#5a8ac0;font-size:11px;font-weight:700;">依距離</span></div>
     </div>
     <div class="pdet on" id="det-store">
       📍 高雄市前金區新田路182號「藏在銀飾店裡的甜點店」<br>
@@ -377,6 +378,12 @@ body{background:var(--cr);color:var(--tx);min-height:100vh;}
       📦 黑貓冷凍宅急便 +$290 · 全程低溫配送<br>
       ⚠️ 製作＋配送需要 3 個工作天，請提前預訂<br>
       💳 黑貓宅急便僅支援<strong>匯款</strong>付款，選擇後自動切換
+    </div>
+    <div class="pdet" id="det-lala">
+      🛵 Lalamove 高雄市區蛋糕配送服務<br>
+      💰 費用依配送距離浮動計算，<a href="https://www.lalamove.com/zh-TW/taiwan/kaohsiung/price" target="_blank" style="color:#5a8ac0;font-weight:700;text-decoration:underline;">點此查詢 Lalamove 預估運費</a><br>
+      ⚠️ 僅限高雄市區範圍，運費由訂購人自行負擔，下單後請與闆娘確認最終報價<br>
+      💳 Lalamove 配送僅支援<strong>匯款</strong>付款，選擇後自動切換
     </div>
     <div class="dlvf" id="dlvFields">
       <div class="dlvt">📦 黑貓冷凍宅急便配送資訊</div>
@@ -418,10 +425,49 @@ body{background:var(--cr);color:var(--tx);min-height:100vh;}
         <div style="font-size:13px;color:var(--txl);margin-top:4px;">請填寫匯款帳戶末五碼供店家確認</div>
       </div>
     </div>
+    <div class="dlvf" id="lalaFields">
+      <div class="dlvt">🛵 Lalamove 市區配送資訊</div>
+      <div class="dlvw" style="color:#5a8ac0;">💰 費用依配送距離浮動，<a href="https://www.lalamove.com/zh-TW/taiwan/kaohsiung/price" target="_blank" style="color:#5a8ac0;text-decoration:underline;font-weight:700;">點此查詢預估運費</a>，闆娘將與您確認最終報價</div>
+      <div>
+        <div class="dlvlbl">配送地址 <span style="color:#c04040">*</span></div>
+        <input class="inp" id="iLalaAddr" type="text" placeholder="請輸入完整收件地址（含縣市區）">
+        <div class="err" id="err-lalaaddr"></div>
+      </div>
+      <div>
+        <div class="dlvlbl">到貨時間 <span style="color:#c04040">*</span></div>
+        <select class="inp" id="iLalaTime">
+          <option value="">請選擇到貨時間</option>
+          <option value="10:00-11:00">10:00–11:00</option>
+          <option value="11:00-12:00">11:00–12:00</option>
+          <option value="12:00-13:00">12:00–13:00</option>
+          <option value="13:00-14:00">13:00–14:00</option>
+          <option value="14:00-15:00">14:00–15:00</option>
+          <option value="15:00-16:00">15:00–16:00</option>
+          <option value="16:00-17:00">16:00–17:00</option>
+          <option value="17:00-18:00">17:00–18:00</option>
+          <option value="18:00-19:00">18:00–19:00</option>
+          <option value="19:00-20:00">19:00–20:00</option>
+          <option value="20:00-21:00">20:00–21:00</option>
+        </select>
+        <div class="err" id="err-lalatime"></div>
+      </div>
+    </div>
     <div id="pickDateGroup">
       <div class="dlvlbl" style="margin-top:8px;">取貨日期 <span style="color:#c04040">*</span></div>
       <input class="inp" id="iDate" type="date">
       <div class="err" id="err-date"></div>
+      <div id="storeTimeGroup" style="display:block;margin-top:8px;">
+        <div class="dlvlbl">自取時間 <span style="color:#c04040">*</span></div>
+        <select class="inp" id="iStoreSlot">
+          <option value="">請選擇時段</option>
+          <option value="14:00-15:00">14:00–15:00</option>
+          <option value="15:00-16:00">15:00–16:00</option>
+          <option value="16:00-17:00">16:00–17:00</option>
+          <option value="17:00-18:00">17:00–18:00</option>
+          <option value="18:00-19:00">18:00–19:00</option>
+        </select>
+        <div class="err" id="err-storeslot"></div>
+      </div>
       <div id="meetTimeGroup" style="display:none;margin-top:8px;">
         <div class="dlvlbl">面交時間 <span style="color:#c04040">*</span></div>
         <select class="inp" id="iMeetSlot"><option value="">請先選取貨日期</option></select>
@@ -571,8 +617,8 @@ var SZ=[["4吋（2-3人）",500],["6吋（4-6人）",750],["8吋（8-10人）",1
 
 var S={step:1,size:"",sizeP:0,style:"",color:"",cream:"經典原味",fill:"生巧克力",
   fruit:"不加水果",wine:"不加",forkQ:0,
-  pickMode:"store",date:"",meetSlot:"",
-  dlvDate:"",dlvName:"",dlvPhone:"",dlvAddr:"",dlvTime:"",dlvLast5:"",
+  pickMode:"store",date:"",meetSlot:"",storeSlot:"",
+  dlvDate:"",dlvName:"",dlvPhone:"",dlvAddr:"",dlvTime:"",dlvLast5:"",lalaAddr:"",lalaTime:"",
   pay:"cash",name:"",phone:"",card:"",social:"",note:"",total:0};
 
 function calcTotal(){
@@ -630,17 +676,21 @@ function buildMeetSlots(val){
 
 function setPickMode(mode){
   S.pickMode=mode;
-  ["store","meet","dlv"].forEach(function(m){
+  ["store","meet","dlv","lala"].forEach(function(m){
     var t=document.getElementById("tab-"+m);if(t)t.classList.toggle("on",m===mode);
     var d=document.getElementById("det-"+m);if(d)d.classList.toggle("on",m===mode);
   });
   var df=document.getElementById("dlvFields");
   if(df)df.classList.toggle("on",mode==="dlv");
+  var lf=document.getElementById("lalaFields");
+  if(lf)lf.classList.toggle("on",mode==="lala");
   var pdg=document.getElementById("pickDateGroup");
-  if(pdg)pdg.style.display=mode==="dlv"?"none":"block";
+  if(pdg)pdg.style.display=(mode==="dlv"||mode==="lala")?"none":"block";
   var mtg=document.getElementById("meetTimeGroup");
   if(mtg)mtg.style.display=mode==="meet"?"block":"none";
-  if(mode==="dlv"){
+  var stg=document.getElementById("storeTimeGroup");
+  if(stg)stg.style.display=mode==="store"?"block":"none";
+  if(mode==="dlv"||mode==="lala"){
     S.pay="transfer";
     var pc=document.getElementById("pay-cash");
     if(pc){pc.classList.remove("on");pc.style.opacity="0.4";pc.style.pointerEvents="none";}
@@ -710,6 +760,10 @@ function validate5(){
       S.meetSlot=document.getElementById("iMeetSlot").value;
       if(!S.meetSlot){showErr("err-meet","請選擇面交時間段","iMeetSlot");ok=false;}
     }
+    if(S.pickMode==="store"){
+      S.storeSlot=document.getElementById("iStoreSlot").value;
+      if(!S.storeSlot){showErr("err-storeslot","請選擇自取時段","iStoreSlot");ok=false;}
+    }
   }
   if(S.pickMode==="dlv"){
     var dd=document.getElementById("iDlvDate").value;
@@ -731,6 +785,13 @@ function validate5(){
     if(!dl){showErr("err-dlvlast5","請填寫匯款帳號末五碼","iDlvLast5");ok=false;}
     if(ok){S.dlvName=dn;S.dlvPhone=dp;S.dlvAddr=da;S.dlvTime=dt;S.dlvLast5=dl;}
   }
+  if(S.pickMode==="lala"){
+    var laAddr=document.getElementById("iLalaAddr").value.trim();
+    var laTime=document.getElementById("iLalaTime").value;
+    if(!laAddr){showErr("err-lalaaddr","請填寫配送地址","iLalaAddr");ok=false;}
+    if(!laTime){showErr("err-lalatime","請選擇到貨時間","iLalaTime");ok=false;}
+    if(ok){S.lalaAddr=laAddr;S.lalaTime=laTime;}
+  }
   if(!S.pay){showErr("err-pay","請選擇付款方式");ok=false;}
   if(!ok){var first=document.querySelector(".err.show");if(first)first.scrollIntoView({behavior:"smooth",block:"center"});}
   return ok;
@@ -744,9 +805,10 @@ function renderOrder(){
   var dlvStr=S.pickMode==="dlv"?"黑貓冷凍宅配（+$290）":"不需要";
   var payStr=S.pay==="cash"?"當日付現":"匯款";
   var pickup="";
-  if(S.pickMode==="store")pickup=S.date+"（自取）";
+  if(S.pickMode==="store")pickup=S.date+" "+S.storeSlot+"（自取）";
   else if(S.pickMode==="meet")pickup=S.date+" "+S.meetSlot+"（面交：高雄市前金區新田路182號）";
-  else pickup="黑貓宅急便配送 "+S.dlvDate;
+  else if(S.pickMode==="dlv")pickup="黑貓宅急便配送 "+S.dlvDate;
+  else pickup="Lalamove 配送 "+S.lalaTime;
   var tc="<div class='tl main'><span>🎂 蛋糕基本價（"+S.size+"）</span><span>$"+S.sizeP+"</span></div>";
   if(fa>0)tc+="<div class='tl'><span>🍓 季節水果</span><span>+$"+fa+"</span></div>";
   if(S.pickMode==="dlv")tc+="<div class='tl'><span>📦 黑貓冷凍宅配</span><span>+$290</span></div>";
@@ -769,9 +831,10 @@ function renderOrder(){
     return "<div class='orrow'><span class='ol'>"+r[0]+"</span><span class='ov'>"+r[1]+"</span></div>";
   }).join("");
   var tfBlock=S.pay==="transfer"?"\n─────────────────\n🏦 匯款資訊\n戶名：周婉玲\n帳號：699503223922\n銀行：013 國泰世華（吉門商行）\n應匯金額：$"+S.total+"\n匯款後請告知卡號末五碼 😆":"";
-  var dlvBlock=S.pickMode==="dlv"?"\n📅 配送日期："+S.dlvDate+"\n👤 收件人："+S.dlvName+"\n📱 收件手機："+S.dlvPhone+"\n🏠 配送地址："+S.dlvAddr+"\n⏰ 到貨時間："+S.dlvTime+"\n💳 帳號末五碼："+S.dlvLast5:"";
+  var dlvBlock=S.pickMode==="dlv"?"\n📅 配送日期："+S.dlvDate+"\n👤 收件人："+S.dlvName+"\n📱 收件手機："+S.dlvPhone+"\n🏠 配送地址："+S.dlvAddr+"\n⏰ 到貨時間："+S.dlvTime+"\n💳 帳號末五碼："+S.dlvLast5:S.pickMode==="lala"?"\n🏠 配送地址："+S.lalaAddr+"\n⏰ 到貨時間："+S.lalaTime+"\n💰 運費：依距離現場報價":"";
   var pNote=S.pickMode==="meet"?"\n⚠️ 快到前請主動私訊闆娘！":"";
-  var txt="【吉門製甜 客製化蛋糕訂單】\nJimon\n─────────────────\n🎂 尺寸："+S.size+"（$"+S.sizeP+"）\n🍦 鮮奶油口味："+S.cream+"\n🍮 風味內餡："+S.fill+"\n🍓 季節水果："+frStr+"\n🍷 豪酒："+S.wine+"\n📦 宅配："+dlvStr+"\n🍴 叉盤組："+fkStr+"\n🪧 手寫小牌："+(S.card||"（無）")+"\n─────────────────\n💰 合計：$"+S.total+"\n💳 付款方式："+payStr+tfBlock+"\n─────────────────\n📅 取貨時間："+pickup+pNote+dlvBlock+"\n📱 FB/IG/LINE："+(S.social||"（無）")+"\n👤 訂購人："+S.name+"\n📱 聯絡電話："+S.phone+"\n💬 備注："+(S.note||"（無）")+"\n─────────────────\nIG / FB：lachoupatisserie";
+  var styleBlock=S.style?("\n🎀 造型："+S.style+(S.style==="白色鮮奶油限定（暈染可選色）"&&S.color?"\n🎨 暈染顏色："+S.color:"")):"";
+  var txt="【吉門製甜 客製化蛋糕訂單】\nJimon\n─────────────────\n🎂 尺寸："+S.size+"（$"+S.sizeP+"）"+styleBlock+"\n🍦 鮮奶油口味："+S.cream+"\n🍮 風味內餡："+S.fill+"\n🍓 季節水果："+frStr+"\n🍷 豪酒："+S.wine+"\n📦 宅配："+dlvStr+"\n🍴 叉盤組："+fkStr+"\n🪧 手寫小牌："+(S.card||"（無）")+"\n─────────────────\n💰 合計：$"+S.total+"\n💳 付款方式："+payStr+tfBlock+"\n─────────────────\n📅 取貨時間："+pickup+pNote+dlvBlock+"\n📱 FB/IG/LINE："+(S.social||"（無）")+"\n👤 訂購人："+S.name+"\n📱 聯絡電話："+S.phone+"\n💬 備注："+(S.note||"（無）")+"\n─────────────────\nIG / FB：lachoupatisserie";
   document.getElementById("copyArea").value=txt;
 }
 
@@ -795,8 +858,8 @@ function doRestart(){
   var kp=document.getElementById("iPhone").value.replace(/\D/g,"");
   S={step:1,size:"",sizeP:0,style:"",color:"",cream:"經典原味",fill:"生巧克力",
     fruit:"不加水果",wine:"不加",forkQ:0,
-    pickMode:"store",date:"",meetSlot:"",
-    dlvDate:"",dlvName:"",dlvPhone:"",dlvAddr:"",dlvTime:"",dlvLast5:"",
+    pickMode:"store",date:"",meetSlot:"",storeSlot:"",
+    dlvDate:"",dlvName:"",dlvPhone:"",dlvAddr:"",dlvTime:"",dlvLast5:"",lalaAddr:"",lalaTime:"",
     pay:"cash",name:kn,phone:kp,card:"",social:"",note:"",total:0};
   ["sz4","sz6","sz8"].forEach(function(id){var e=document.getElementById(id);if(e)e.classList.remove("on");});
   for(var i=0;i<=3;i++){var e=document.getElementById("st"+i);if(e)e.classList.remove("on");}
@@ -820,8 +883,12 @@ function doRestart(){
   var pt=document.getElementById("pay-transfer");if(pt)pt.classList.remove("on");
   var tb=document.getElementById("tfBox");if(tb)tb.classList.remove("on");
   var tf6=document.getElementById("tf6");if(tf6)tf6.style.display="none";
-  ["iCard","iSocialHandle","iNote","iDate","iDlvDate","iDlvName","iDlvPhone","iDlvAddr","iDlvLast5"].forEach(function(id){var e=document.getElementById(id);if(e)e.value="";});
+  ["iCard","iSocialHandle","iNote","iDate","iDlvDate","iDlvName","iDlvPhone","iDlvAddr","iDlvLast5","iLalaAddr"].forEach(function(id){var e=document.getElementById(id);if(e)e.value="";});
+  var ilt=document.getElementById("iLalaTime");if(ilt)ilt.value="";
+  var laf=document.getElementById("lalaFields");if(laf)laf.classList.remove("on");
+  var tlala=document.getElementById("tab-lala");if(tlala)tlala.classList.remove("on");
   var msl=document.getElementById("iMeetSlot");if(msl)msl.innerHTML="<option value=''>請先選取貨日期</option>";
+  var iss=document.getElementById("iStoreSlot");if(iss)iss.value="";
   var dts=document.getElementById("iDlvTime");if(dts)dts.value="";
   var cs=document.getElementById("chkSame");if(cs)cs.checked=false;
   var dna=document.getElementById("iDlvName");if(dna){dna.readOnly=false;dna.style.background="";}
@@ -962,6 +1029,7 @@ window.addEventListener("DOMContentLoaded",function(){
   document.getElementById("tab-store").addEventListener("click",function(){setPickMode("store");});
   document.getElementById("tab-meet").addEventListener("click",function(){setPickMode("meet");});
   document.getElementById("tab-dlv").addEventListener("click",function(){setPickMode("dlv");});
+  document.getElementById("tab-lala").addEventListener("click",function(){setPickMode("lala");});
 
   // iDate
   document.getElementById("iDate").addEventListener("change",function(){
