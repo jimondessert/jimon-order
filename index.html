@@ -428,6 +428,10 @@ body{background:var(--cr);color:var(--tx);min-height:100vh;}
     <div class="dlvf" id="lalaFields">
       <div class="dlvt">🛵 Lalamove 市區配送資訊</div>
       <div class="dlvw" style="color:#5a8ac0;">💰 費用依配送距離浮動，<a href="https://www.lalamove.com/zh-TW/taiwan/kaohsiung/price" target="_blank" style="color:#5a8ac0;text-decoration:underline;font-weight:700;">點此查詢預估運費</a>，闆娘將與您確認最終報價</div>
+      <div style="background:#eef5ee;border-radius:10px;padding:10px 12px;display:flex;align-items:center;justify-content:space-between;gap:10px;">
+        <div style="font-size:13px;color:var(--txl);">📍 取貨門市：高雄市前金區新田路182號</div>
+        <button type="button" id="copyShopAddr" style="flex-shrink:0;padding:7px 12px;border-radius:8px;border:2px solid var(--sg);background:#fff;font-size:12px;font-weight:700;color:var(--sgd);cursor:pointer;-webkit-appearance:none;appearance:none;">📋 複製地址</button>
+      </div>
       <div>
         <div class="dlvlbl">配送地址 <span style="color:#c04040">*</span></div>
         <input class="inp" id="iLalaAddr" type="text" placeholder="請輸入完整收件地址（含縣市區）">
@@ -450,6 +454,11 @@ body{background:var(--cr);color:var(--tx);min-height:100vh;}
           <option value="20:00-21:00">20:00–21:00</option>
         </select>
         <div class="err" id="err-lalatime"></div>
+      </div>
+      <div>
+        <div class="dlvlbl">配送金額（選填）</div>
+        <input class="inp" id="iLalaFee" type="number" inputmode="numeric" placeholder="例：150（依Lalamove詢價結果填寫）">
+        <div style="font-size:12px;color:var(--txl);margin-top:4px;">💬 若已知配送費用可先填寫，將自動計入總金額；未填寫則合計不含運費，待確認後另計</div>
       </div>
     </div>
     <div id="pickDateGroup">
@@ -618,12 +627,12 @@ var SZ=[["4吋（2-3人）",500],["6吋（4-6人）",750],["8吋（8-10人）",1
 var S={step:1,size:"",sizeP:0,style:"",color:"",cream:"經典原味",fill:"生巧克力",
   fruit:"不加水果",wine:"不加",forkQ:0,
   pickMode:"store",date:"",meetSlot:"",storeSlot:"",
-  dlvDate:"",dlvName:"",dlvPhone:"",dlvAddr:"",dlvTime:"",dlvLast5:"",lalaAddr:"",lalaTime:"",
+  dlvDate:"",dlvName:"",dlvPhone:"",dlvAddr:"",dlvTime:"",dlvLast5:"",lalaAddr:"",lalaTime:"",lalaFee:0,
   pay:"cash",name:"",phone:"",card:"",social:"",note:"",total:0};
 
 function calcTotal(){
   var fr=S.fruit!=="不加水果"?(FA[S.size]||0):0;
-  S.total=S.sizeP+fr+(S.forkQ*20)+(S.pickMode==="dlv"?290:0);
+  S.total=S.sizeP+fr+(S.forkQ*20)+(S.pickMode==="dlv"?290:0)+(S.pickMode==="lala"?(S.lalaFee||0):0);
 }
 
 function fmtD(d){return d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2);}
@@ -788,9 +797,10 @@ function validate5(){
   if(S.pickMode==="lala"){
     var laAddr=document.getElementById("iLalaAddr").value.trim();
     var laTime=document.getElementById("iLalaTime").value;
+    var laFeeVal=parseFloat(document.getElementById("iLalaFee").value)||0;
     if(!laAddr){showErr("err-lalaaddr","請填寫配送地址","iLalaAddr");ok=false;}
     if(!laTime){showErr("err-lalatime","請選擇到貨時間","iLalaTime");ok=false;}
-    if(ok){S.lalaAddr=laAddr;S.lalaTime=laTime;}
+    if(ok){S.lalaAddr=laAddr;S.lalaTime=laTime;S.lalaFee=laFeeVal;}
   }
   if(!S.pay){showErr("err-pay","請選擇付款方式");ok=false;}
   if(!ok){var first=document.querySelector(".err.show");if(first)first.scrollIntoView({behavior:"smooth",block:"center"});}
@@ -812,6 +822,7 @@ function renderOrder(){
   var tc="<div class='tl main'><span>🎂 蛋糕基本價（"+S.size+"）</span><span>$"+S.sizeP+"</span></div>";
   if(fa>0)tc+="<div class='tl'><span>🍓 季節水果</span><span>+$"+fa+"</span></div>";
   if(S.pickMode==="dlv")tc+="<div class='tl'><span>📦 黑貓冷凍宅配</span><span>+$290</span></div>";
+  if(S.pickMode==="lala"&&S.lalaFee>0)tc+="<div class='tl'><span>🛵 Lalamove 運費</span><span>+$"+S.lalaFee+"</span></div>";
   if(S.forkQ>0)tc+="<div class='tl'><span>🍴 叉盤組 ×"+S.forkQ+"</span><span>+$"+(S.forkQ*20)+"</span></div>";
   tc+="<div class='tdiv'></div><div class='tfin'><span class='tlab'>💰 合計</span><span class='tamt'>$"+S.total+"</span></div>";
   document.getElementById("totCard").innerHTML=tc;
@@ -831,7 +842,7 @@ function renderOrder(){
     return "<div class='orrow'><span class='ol'>"+r[0]+"</span><span class='ov'>"+r[1]+"</span></div>";
   }).join("");
   var tfBlock=S.pay==="transfer"?"\n─────────────────\n🏦 匯款資訊\n戶名：周婉玲\n帳號：699503223922\n銀行：013 國泰世華（吉門商行）\n應匯金額：$"+S.total+"\n匯款後請告知卡號末五碼 😆":"";
-  var dlvBlock=S.pickMode==="dlv"?"\n📅 配送日期："+S.dlvDate+"\n👤 收件人："+S.dlvName+"\n📱 收件手機："+S.dlvPhone+"\n🏠 配送地址："+S.dlvAddr+"\n⏰ 到貨時間："+S.dlvTime+"\n💳 帳號末五碼："+S.dlvLast5:S.pickMode==="lala"?"\n🏠 配送地址："+S.lalaAddr+"\n⏰ 到貨時間："+S.lalaTime+"\n💰 運費：依距離現場報價":"";
+  var dlvBlock=S.pickMode==="dlv"?"\n📅 配送日期："+S.dlvDate+"\n👤 收件人："+S.dlvName+"\n📱 收件手機："+S.dlvPhone+"\n🏠 配送地址："+S.dlvAddr+"\n⏰ 到貨時間："+S.dlvTime+"\n💳 帳號末五碼："+S.dlvLast5:S.pickMode==="lala"?"\n🏠 配送地址："+S.lalaAddr+"\n⏰ 到貨時間："+S.lalaTime+"\n💰 運費："+(S.lalaFee>0?("$"+S.lalaFee+"（已計入合計）"):"未填寫，依距離現場報價"):"";
   var pNote=S.pickMode==="meet"?"\n⚠️ 快到前請主動私訊闆娘！":"";
   var styleBlock=S.style?("\n🎀 造型："+S.style+(S.style==="白色鮮奶油限定（暈染可選色）"&&S.color?"\n🎨 暈染顏色："+S.color:"")):"";
   var txt="【吉門製甜 客製化蛋糕訂單】\nJimon\n─────────────────\n🎂 尺寸："+S.size+"（$"+S.sizeP+"）"+styleBlock+"\n🍦 鮮奶油口味："+S.cream+"\n🍮 風味內餡："+S.fill+"\n🍓 季節水果："+frStr+"\n🍷 豪酒："+S.wine+"\n📦 宅配："+dlvStr+"\n🍴 叉盤組："+fkStr+"\n🪧 手寫小牌："+(S.card||"（無）")+"\n─────────────────\n💰 合計：$"+S.total+"\n💳 付款方式："+payStr+tfBlock+"\n─────────────────\n📅 取貨時間："+pickup+pNote+dlvBlock+"\n📱 FB/IG/LINE："+(S.social||"（無）")+"\n👤 訂購人："+S.name+"\n📱 聯絡電話："+S.phone+"\n💬 備注："+(S.note||"（無）")+"\n─────────────────\nIG / FB：lachoupatisserie";
@@ -859,7 +870,7 @@ function doRestart(){
   S={step:1,size:"",sizeP:0,style:"",color:"",cream:"經典原味",fill:"生巧克力",
     fruit:"不加水果",wine:"不加",forkQ:0,
     pickMode:"store",date:"",meetSlot:"",storeSlot:"",
-    dlvDate:"",dlvName:"",dlvPhone:"",dlvAddr:"",dlvTime:"",dlvLast5:"",lalaAddr:"",lalaTime:"",
+    dlvDate:"",dlvName:"",dlvPhone:"",dlvAddr:"",dlvTime:"",dlvLast5:"",lalaAddr:"",lalaTime:"",lalaFee:0,
     pay:"cash",name:kn,phone:kp,card:"",social:"",note:"",total:0};
   ["sz4","sz6","sz8"].forEach(function(id){var e=document.getElementById(id);if(e)e.classList.remove("on");});
   for(var i=0;i<=3;i++){var e=document.getElementById("st"+i);if(e)e.classList.remove("on");}
@@ -885,6 +896,7 @@ function doRestart(){
   var tf6=document.getElementById("tf6");if(tf6)tf6.style.display="none";
   ["iCard","iSocialHandle","iNote","iDate","iDlvDate","iDlvName","iDlvPhone","iDlvAddr","iDlvLast5","iLalaAddr"].forEach(function(id){var e=document.getElementById(id);if(e)e.value="";});
   var ilt=document.getElementById("iLalaTime");if(ilt)ilt.value="";
+  var ilf=document.getElementById("iLalaFee");if(ilf)ilf.value="";
   var laf=document.getElementById("lalaFields");if(laf)laf.classList.remove("on");
   var tlala=document.getElementById("tab-lala");if(tlala)tlala.classList.remove("on");
   var msl=document.getElementById("iMeetSlot");if(msl)msl.innerHTML="<option value=''>請先選取貨日期</option>";
@@ -1091,6 +1103,25 @@ window.addEventListener("DOMContentLoaded",function(){
   document.getElementById("copyBtn").addEventListener("click",doCopy);
   document.getElementById("copyArea").addEventListener("click",function(){selAll(this);doCopy();});
   document.getElementById("copyArea").addEventListener("touchstart",function(e){e.preventDefault();selAll(this);doCopy();});
+
+
+  var copyShopAddr=document.getElementById("copyShopAddr");
+  if(copyShopAddr){
+    copyShopAddr.addEventListener("click",function(){
+      var addr="高雄市前金區新田路182號";
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        navigator.clipboard.writeText(addr).then(function(){showToast("✓ 已複製門市地址");}).catch(function(){
+          var ta=document.createElement("textarea");ta.value=addr;document.body.appendChild(ta);ta.select();
+          try{document.execCommand("copy");showToast("✓ 已複製門市地址");}catch(e){showToast("複製失敗，請手動複製");}
+          document.body.removeChild(ta);
+        });
+      }else{
+        var ta2=document.createElement("textarea");ta2.value=addr;document.body.appendChild(ta2);ta2.select();
+        try{document.execCommand("copy");showToast("✓ 已複製門市地址");}catch(e){showToast("複製失敗，請手動複製");}
+        document.body.removeChild(ta2);
+      }
+    });
+  }
 
   // Restart
   document.getElementById("rstBtn").addEventListener("click",doRestart);
