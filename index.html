@@ -138,7 +138,7 @@ body{background:var(--cr);color:var(--tx);min-height:100vh;}
 .toast.on{transform:translateX(-50%) translateY(0);}
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9000;display:none;align-items:flex-end;justify-content:center;}
 .overlay.on{display:flex;}
-.modal{background:#fff;border-radius:24px 24px 0 0;padding:28px 20px 40px;width:100%;max-width:500px;animation:slideUp .3s ease;}
+.modal{background:#fff;border-radius:24px 24px 0 0;padding:28px 20px 60px;width:100%;max-width:500px;animation:slideUp .3s ease;max-height:90vh;overflow-y:auto;}
 @keyframes slideUp{from{transform:translateY(100%);}to{transform:translateY(0);}}
 .modal-title{font-size:20px;font-weight:700;color:var(--sgd);text-align:center;margin-bottom:6px;}
 .modal-sub{font-size:14px;color:var(--txl);text-align:center;margin-bottom:20px;line-height:1.6;}
@@ -170,7 +170,7 @@ body{background:var(--cr);color:var(--tx);min-height:100vh;}
 <body>
 
 
-<div class="overlay" id="sourceOverlay" style="display:flex;z-index:9500;">
+<div class="overlay" id="sourceOverlay" style="display:flex;z-index:99999;">
   <div class="modal" style="border-radius:24px;margin:0 16px;max-width:460px;">
     <div class="modal-title">👋 歡迎光臨吉門製甜</div>
     <div class="modal-sub">請問您是從哪裡看到我們的呢？<br>方便闆娘之後與您聯繫 😊</div>
@@ -401,7 +401,7 @@ body{background:var(--cr);color:var(--tx);min-height:100vh;}
     <div class="pdet on" id="det-store">
       📍 高雄市前金區新田路182號「藏在銀飾店裡的甜點店」<br>
       🕒 週一～日 下午 2:00–7:00（週三公休）<br>
-      ⚠️ 不接受當日訂購，請至少提前 24 小時預訂
+      ⚠️ 不接受當日訂購，請至少提前 24 小時預訂，如有急單請私訊跟闆娘討論
     </div>
     <div class="pdet" id="det-meet">
       📍 面交地點：高雄市前金區新田路182號<br>
@@ -595,8 +595,8 @@ body{background:var(--cr);color:var(--tx);min-height:100vh;}
     <div class="obody" id="obody"></div>
   </div>
 
-  <!-- 文字框 -->
-  <div class="copyw">
+  <!-- 文字框（隱藏，僅供複製按鈕讀取內容，Android 用戶長按下方按鈕區域可備用複製） -->
+  <div class="copyw" style="display:none;">
     <div class="copylbl">💡 <strong>點一下文字框</strong>自動複製 / 長按手動全選（Android）</div>
     <textarea id="copyArea" readonly style="-webkit-user-select:all;user-select:all;cursor:pointer;"></textarea>
   </div>
@@ -826,7 +826,7 @@ function validate5(){
       var ch=new Date(dv+"T00:00:00");
       var now=new Date();
       var min24=new Date(now.getTime()+24*60*60*1000);
-      if(ch<min24){showErr("err-date","不接受當日訂購，請至少提前 24 小時預訂","iDate");ok=false;}
+      if(ch<min24){showErr("err-date","不接受當日訂購，請至少提前 24 小時預訂，如有急單請私訊跟闆娘討論","iDate");ok=false;}
       else if(ch.getDay()===3){showErr("err-date","每週三公休，請選擇其他日期","iDate");ok=false;}
       else S.date=dv.replace(/-/g,"/");
     }
