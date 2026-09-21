@@ -669,6 +669,23 @@ body{background:var(--cr);color:var(--tx);min-height:100vh;}
 </div>
 <div class="toast" id="toast"></div>
 
+<div class="overlay" id="remindOverlay" style="display:none;z-index:99999;">
+  <div class="modal" style="border-radius:20px;margin:0 20px;max-width:460px;padding:28px 22px 32px;">
+    <div style="text-align:center;font-size:44px;margin-bottom:12px;">📋</div>
+    <div style="font-size:20px;font-weight:700;color:var(--sgd);text-align:center;margin-bottom:10px;">填完資料記得複製訂單！</div>
+    <div style="font-size:15px;color:var(--txl);text-align:center;line-height:2;margin-bottom:20px;">
+      填完後按下「✨ 產生訂單」<br>
+      再點「📋 複製訂單」<br>
+      最後私訊給闆娘<br>
+      <strong style="color:var(--sgd);">複製傳送後訂單才算成立喔！</strong>
+    </div>
+    <button id="remindOk" style="width:100%;padding:16px;border-radius:14px;border:none;background:linear-gradient(135deg,var(--sgd),var(--sg));color:#fff;font-size:17px;font-weight:700;cursor:pointer;font-family:inherit;-webkit-appearance:none;appearance:none;">
+      我知道了，繼續填寫 →
+    </button>
+  </div>
+</div>
+
+
 <div class="overlay" id="sendOverlay">
   <div class="modal">
     <div class="modal-title">✅ 訂單已複製！</div>
@@ -1248,7 +1265,15 @@ window.addEventListener("DOMContentLoaded",function(){
     document.getElementById("fkL").textContent="費用+$"+(S.forkQ*20)+"（共"+(S.forkQ+1)+"組）";
     calcTotal();
   });
-  document.getElementById("sk4").addEventListener("click",function(){goStep(5);});
+  document.getElementById("sk4").addEventListener("click",function(){
+    var ov=document.getElementById("remindOverlay");
+    if(ov)ov.style.display="flex";
+  });
+  document.getElementById("remindOk").addEventListener("click",function(){
+    var ov=document.getElementById("remindOverlay");
+    if(ov)ov.style.display="none";
+    goStep(5);
+  });
 
   // Pickup tabs
   document.getElementById("tab-store").addEventListener("click",function(){setPickMode("store");});
@@ -1303,7 +1328,14 @@ window.addEventListener("DOMContentLoaded",function(){
   });
 
   // Nav
-  document.getElementById("bNx").addEventListener("click",function(){if(S.step<6)goStep(S.step+1);});
+  document.getElementById("bNx").addEventListener("click",function(){
+    if(S.step===4){
+      var ov=document.getElementById("remindOverlay");
+      if(ov)ov.style.display="flex";
+    } else if(S.step<6){
+      goStep(S.step+1);
+    }
+  });
   document.getElementById("bBk").addEventListener("click",function(){if(S.step>1)goStep(S.step-1);});
   document.getElementById("genBtn").addEventListener("click",function(){if(validate5())goStep(6);});
 
