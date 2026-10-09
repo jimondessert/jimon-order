@@ -165,6 +165,12 @@ body{background:var(--cr);color:var(--tx);min-height:100vh;}
 .style-ck{opacity:0;color:var(--sgd);font-size:20px;padding-right:14px;flex-shrink:0;}
 .err.show{display:block;}
 .inp.err-inp{border-color:#c04040;background:#fff8f8;}
+
+/* 推薦內餡紅框 */
+.fc.rec{border-color:#e05050;box-shadow:0 0 0 2px rgba(224,80,80,0.18);}
+.fc.rec .fn::after{content:" 👍";font-size:13px;}
+.rec-hint{font-size:13px;color:#e05050;background:#fff5f5;border:1px solid #f8c8c8;border-radius:10px;padding:8px 13px;margin-bottom:10px;display:none;line-height:1.7;}
+.rec-hint.show{display:block;}
 </style>
 </head>
 <body>
@@ -329,13 +335,14 @@ body{background:var(--cr);color:var(--tx);min-height:100vh;}
   <div class="fguide">
     <strong>🏠 閤家歡樂：</strong>法式烤布蕾<br>
     <strong>🍫 大人濃郁：</strong>生巧克力、酒香生巧克力<br>
-    <strong>🍓 果香酸感：</strong>覆盆子庫利（果凍）
+    <strong>🍓 果香酸感：</strong>綜合莓果庫利（果凍）
   </div>
   <div class="g2">
+    <div class="rec-hint" id="fillRecHint">🍫 搭配焦糖堅果／鹽之花黑芝麻，推薦選：<strong>生巧克力</strong> 或 <strong>法式烤布蕾</strong>，風味更有層次！</div>
     <div class="fc on" id="f0"><div class="fi">🍫</div><div><div class="fn">生巧克力</div><div class="fs">大人濃郁</div></div><span class="ck">✓</span></div>
     <div class="fc" id="f1"><div class="fi">🍷</div><div><div class="fn">酒香生巧克力</div><div class="fs">大人系口感</div></div><span class="ck">✓</span></div>
     <div class="fc" id="f2"><div class="fi">🍮</div><div><div class="fn">法式烤布蕾</div><div class="fs">滿滿香草籽</div></div><span class="ck">✓</span></div>
-    <div class="fc" id="f3"><div class="fi">🍓</div><div><div class="fn">覆盆子庫利</div><div class="fs">100%果泥果凍</div></div><span class="ck">✓</span></div>
+    <div class="fc" id="f3"><div class="fi">🍓</div><div><div class="fn">綜合莓果庫利</div><div class="fs">酸甜爽口・莓果清香</div></div><span class="ck">✓</span></div>
     <div class="fc" id="f4"><div class="fi">🍵</div><div><div class="fn">抹茶生巧克力</div><div class="fs">茶控必選</div></div><span class="ck">✓</span></div>
     <div class="fc" id="f5"><div class="fi">🧋</div><div><div class="fn">奶茶烤布蕾</div><div class="fs">茶香布蕾</div></div><span class="ck">✓</span></div>
   </div>
@@ -354,6 +361,7 @@ body{background:var(--cr);color:var(--tx);min-height:100vh;}
     <div class="frc" id="fr3"><div class="fic">🍓</div><div style="flex:1"><div class="fn2">台灣草莓</div><div class="fs2">冬季 11–4 月</div></div><div class="frc-price">4吋+$50／6吋+$80</div><span class="ck">✓</span></div>
     <div class="season-tip" id="tip-fr3">🍓 草莓還在等待冬天的到來，要到 11–4 月才會是最香甜的產季，請耐心等候季節成熟喔 💕</div>
     <div class="frc" id="fr4"><div class="fic">🍎</div><div style="flex:1"><div class="fn2">炒蘋果</div><div class="fs2">當季蘋果</div></div><div class="frc-price">4吋+$50／6吋+$80</div><span class="ck">✓</span></div>
+    <div class="frc" id="fr5"><div class="fic">🍎🫙</div><div style="flex:1"><div class="fn2">炒蘋果（+肉桂）</div><div class="fs2">當季蘋果 · 加入溫暖肉桂香</div></div><div class="frc-price">4吋+$50／6吋+$80</div><span class="ck">✓</span></div>
   </div>
   <div class="fr-seasonmsg" id="fr-seasonmsg"></div>
   <div class="dvdr"><span>🍷 豪酒專區</span></div>
@@ -725,8 +733,8 @@ body{background:var(--cr);color:var(--tx);min-height:100vh;}
 <script>
 
 var CREAM=["經典原味","馬達加斯加香草","日本抹茶（佐藤園）","日本焙茶（佐藤園）","唐寧伯爵紅茶","柚香金萱","柚香紅茶","紅烏龍","文山包種茶","焦糖堅果醬","鹽之花黑芝麻","巧克力","咖啡","太妃糖"];
-var FILL=["生巧克力","酒香生巧克力","法式烤布蕾","覆盆子庫利（果凍）","抹茶生巧克力","奶茶烤布蕾"];
-var FRUIT=["不加水果","無籽葡萄","台灣芒果","台灣草莓","炒蘋果"];
+var FILL=["生巧克力","酒香生巧克力","法式烤布蕾","綜合莓果庫利（果凍）","抹茶生巧克力","奶茶烤布蕾"];
+var FRUIT=["不加水果","無籽葡萄","台灣芒果","台灣草莓","炒蘋果","炒蘋果（+肉桂）"];
 var WINE=["不加","君度橙酒","黑蘭姆酒","酒釀櫻桃"];
 var FA={"4吋（2-3人）":50,"6吋（4-6人）":80,"8吋（8-10人）":0};
 var SZ=[["4吋（2-3人）",500],["6吋（4-6人）",750],["8吋（8-10人）",1600]];
@@ -787,8 +795,22 @@ function goStep(n){
   document.getElementById("s"+n).classList.add("on");
   if(n===5)buildPreview();
   if(n===6)renderOrder();
+  if(n===3)applyFillRec();
   updateUI();
   window.scrollTo(0,0);
+}
+
+function applyFillRec(){
+  var recCreams=["焦糖堅果醬","鹽之花黑芝麻"];
+  var isRec=recCreams.indexOf(S.cream)!==-1;
+  // 推薦提示
+  var hint=document.getElementById("fillRecHint");
+  if(hint)hint.classList.toggle("show",isRec);
+  // 推薦紅框：f0 生巧克力, f2 法式烤布蕾
+  ["f0","f2"].forEach(function(id){
+    var el=document.getElementById(id);
+    if(el)el.classList.toggle("rec",isRec);
+  });
 }
 
 function updateUI(){
@@ -1242,7 +1264,7 @@ window.addEventListener("DOMContentLoaded",function(){
   lockOutOfSeasonFruits();
 
   // Fruit fr0-fr4
-  for(var i=0;i<=4;i++){(function(idx){
+  for(var i=0;i<=5;i++){(function(idx){
     var el=document.getElementById("fr"+idx);if(!el)return;
     el.addEventListener("click",function(){
       if((idx===2||idx===3)&&!isFruitInSeason(idx)){
@@ -1256,7 +1278,7 @@ window.addEventListener("DOMContentLoaded",function(){
         }
         return;
       }
-      for(var j=0;j<=4;j++){var e=document.getElementById("fr"+j);if(e)e.classList.remove("on");}
+      for(var j=0;j<=5;j++){var e=document.getElementById("fr"+j);if(e)e.classList.remove("on");}
       el.classList.add("on");S.fruit=FRUIT[idx];calcTotal();
     });
   })(i);}
