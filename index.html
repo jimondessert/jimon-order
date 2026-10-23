@@ -171,6 +171,10 @@ body{background:var(--cr);color:var(--tx);min-height:100vh;}
 .fc.rec .fn::after{content:" 👍";font-size:13px;}
 .rec-hint{font-size:13px;color:#e05050;background:#fff5f5;border:1px solid #f8c8c8;border-radius:10px;padding:8px 13px;margin-bottom:10px;display:none;line-height:1.7;}
 .rec-hint.show{display:block;}
+
+/* 第二層內餡加購 */
+.fill2-wrap{margin-top:20px;border-top:2px solid var(--bd);padding-top:20px;}
+.fill2-price-badge{display:inline-block;background:linear-gradient(135deg,#fce4b8,#f8d090);color:#7a4e00;font-size:13px;font-weight:700;padding:3px 12px;border-radius:99px;margin-left:8px;vertical-align:middle;}
 </style>
 </head>
 <body>
@@ -345,6 +349,25 @@ body{background:var(--cr);color:var(--tx);min-height:100vh;}
     <div class="fc" id="f3"><div class="fi">🍓</div><div><div class="fn">綜合莓果庫利</div><div class="fs">酸甜爽口・莓果清香</div></div><span class="ck">✓</span></div>
     <div class="fc" id="f4"><div class="fi">🍵</div><div><div class="fn">抹茶生巧克力</div><div class="fs">茶控必選</div></div><span class="ck">✓</span></div>
     <div class="fc" id="f5"><div class="fi">🧋</div><div><div class="fn">奶茶烤布蕾</div><div class="fs">茶香布蕾</div></div><span class="ck">✓</span></div>
+
+  </div>
+  <!-- 雙重享受：第二層內餡加購 -->
+  <div class="fill2-wrap" id="fill2Wrap">
+    <div class="stitle" style="font-size:20px;margin-top:0;margin-bottom:4px;">雙重享受<span class="fill2-price-badge" id="fill2PriceTag">4吋 +$50 ／ 6吋 +$80</span></div>
+    <div class="shint" style="font-size:14px;margin-bottom:12px;">加購第二層內餡，層次更豐富</div>
+    <div class="dvdr"><span>不加購</span></div>
+    <div class="g2">
+      <div class="fc on" id="g0"><div class="fi">🚫</div><div><div class="fn">不加第二層</div><div class="fs">只要第一層就好</div></div><span class="ck">✓</span></div>
+    </div>
+    <div class="dvdr"><span>加購選項</span></div>
+    <div class="g2">
+      <div class="fc" id="g1"><div class="fi">🍫</div><div><div class="fn">生巧克力</div><div class="fs">大人濃郁</div></div><span class="ck">✓</span></div>
+      <div class="fc" id="g2"><div class="fi">🍷</div><div><div class="fn">酒香生巧克力</div><div class="fs">大人系口感</div></div><span class="ck">✓</span></div>
+      <div class="fc" id="g3"><div class="fi">🍮</div><div><div class="fn">法式烤布蕾</div><div class="fs">滿滿香草籽</div></div><span class="ck">✓</span></div>
+      <div class="fc" id="g4"><div class="fi">🍓</div><div><div class="fn">綜合莓果庫利</div><div class="fs">酸甜爽口・莓果清香</div></div><span class="ck">✓</span></div>
+      <div class="fc" id="g5"><div class="fi">🍵</div><div><div class="fn">抹茶生巧克力</div><div class="fs">茶控必選</div></div><span class="ck">✓</span></div>
+      <div class="fc" id="g6"><div class="fi">🧋</div><div><div class="fn">奶茶烤布蕾</div><div class="fs">茶香布蕾</div></div><span class="ck">✓</span></div>
+    </div>
   </div>
 </div>
 
@@ -358,8 +381,8 @@ body{background:var(--cr);color:var(--tx);min-height:100vh;}
     <div class="frc" id="fr1"><div class="fic">🍏</div><div style="flex:1"><div class="fn2">無籽葡萄</div></div><div class="frc-price">4吋+$50／6吋+$80</div><span class="ck">✓</span></div>
     <div class="frc" id="fr2"><div class="fic">🥭</div><div style="flex:1"><div class="fn2">台灣芒果</div><div class="fs2">夏季 5–8 月</div></div><div class="frc-price">4吋+$50／6吋+$80</div><span class="ck">✓</span></div>
     <div class="season-tip" id="tip-fr2">🥭 芒果還在努力長大中，要等到 5–8 月才會是當季最甜美的時候，請耐心等候季節成熟喔 💛</div>
-    <div class="frc" id="fr3"><div class="fic">🍓</div><div style="flex:1"><div class="fn2">台灣草莓</div><div class="fs2">冬季 11–4 月</div></div><div class="frc-price">4吋+$50／6吋+$80</div><span class="ck">✓</span></div>
-    <div class="season-tip" id="tip-fr3">🍓 草莓還在等待冬天的到來，要到 11–4 月才會是最香甜的產季，請耐心等候季節成熟喔 💕</div>
+    <div class="frc" id="fr3"><div class="fic">🍓</div><div style="flex:1"><div class="fn2">台灣草莓</div><div class="fs2">冬季 12–4 月</div></div><div class="frc-price">4吋+$50／6吋+$80</div><span class="ck">✓</span></div>
+    <div class="season-tip" id="tip-fr3">🍓 草莓還在等待冬天的到來，要到 12–4 月才會是最香甜的產季，請耐心等候季節成熟喔 💕</div>
     <div class="frc" id="fr4"><div class="fic">🍎</div><div style="flex:1"><div class="fn2">炒蘋果</div><div class="fs2">當季蘋果</div></div><div class="frc-price">4吋+$50／6吋+$80</div><span class="ck">✓</span></div>
     <div class="frc" id="fr5"><div class="fic">🍎🫙</div><div style="flex:1"><div class="fn2">炒蘋果（+肉桂）</div><div class="fs2">當季蘋果 · 加入溫暖肉桂香</div></div><div class="frc-price">4吋+$50／6吋+$80</div><span class="ck">✓</span></div>
   </div>
@@ -743,7 +766,7 @@ var S={step:1,size:"",sizeP:0,source:"",style:"",color:"",cream:"經典原味",f
   fruit:"不加水果",wine:"不加",forkQ:0,
   pickMode:"store",date:"",meetSlot:"",storeSlot:"",
   dlvDate:"",dlvName:"",dlvPhone:"",dlvAddr:"",dlvTime:"",dlvLast5:"",lalaAddr:"",lalaTime:"",lalaDate:"",lalaFee:0,
-  pay:"cash",name:"",phone:"",card:"",social:"",note:"",total:0};
+  pay:"cash",name:"",phone:"",card:"",social:"",note:"",fill2:"不加第二層",total:0};
 
 
 function inSeason(month, ranges){
@@ -758,7 +781,7 @@ function inSeason(month, ranges){
 function applySeasonLock(){
   var nowMonth=new Date().getMonth()+1;
   var mangoOk = inSeason(nowMonth, [[5,8]]);
-  var strawberryOk = inSeason(nowMonth, [[11,4]]); // 11月到次年4月
+  var strawberryOk = inSeason(nowMonth, [[12,4]]); // 12月到次年4月
   
   var fr2=document.getElementById("fr2");
   var tip2=document.getElementById("tip-fr2");
@@ -784,7 +807,8 @@ var STYLE_IMAGES={
 
 function calcTotal(){
   var fr=S.fruit!=="不加水果"?(FA[S.size]||0):0;
-  S.total=S.sizeP+fr+(S.forkQ*20)+(S.pickMode==="dlv"?290:0)+(S.pickMode==="lala"?(S.lalaFee||0):0);
+  var f2p=S.fill2!=="不加第二層"?(S.size==="4吋（2-3人）"?50:80):0;
+  S.total=S.sizeP+fr+f2p+(S.forkQ*20)+(S.pickMode==="dlv"?290:0)+(S.pickMode==="lala"?(S.lalaFee||0):0);
 }
 
 function fmtD(d){return d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2);}
@@ -1029,7 +1053,7 @@ function renderOrder(){
     tf6.style.display="block";
     document.getElementById("tfAmt").innerHTML="💰 應匯款金額：<strong style='font-size:20px;color:var(--sgd)'>$"+S.total+"</strong><br>匯款後請告知卡號末五碼以方便確認喔 😆";
   }else if(tf6)tf6.style.display="none";
-  var rows=[["🎂 尺寸",S.size+"（$"+S.sizeP+"）"],["🎀 造型",S.style||"（未選）"],["🎨 暈染顏色",(S.style==="自由暈染漸層系（限制使用白色鮮奶油）"&&S.color)?S.color:"—"],["🍦 鮮奶油",S.cream],["🍮 內餡",S.fill],
+  var rows=[["🎂 尺寸",S.size+"（$"+S.sizeP+"）"],["🎀 造型",S.style||"（未選）"],["🎨 暈染顏色",(S.style==="自由暈染漸層系（限制使用白色鮮奶油）"&&S.color)?S.color:"—"],["🍦 鮮奶油",S.cream],["🍮 內餡（第一層）",S.fill],["🍮 內餡（第二層）",S.fill2==="不加第二層"?"不加":S.fill2+(S.size==="4吋（2-3人）"?" (+$50)":" (+$80)")],
     ["🍓 水果",frStr],["🍷 豪酒",S.wine],["📦 宅配",dlvStr],["🍴 叉盤組",fkStr],
     ["🪧 小牌文字",S.card||"（無）"],["📅 取貨時間",pickup],["💳 付款方式",payStr],
     ["📱 FB/IG/LINE",S.social||"（無）"],["🔍 得知管道",S.source||"（未填）"],["👤 姓名",S.name],["📱 電話",S.phone],["💬 備注",S.note||"（無）"]];
@@ -1046,7 +1070,7 @@ function renderOrder(){
   var dlvBlock=S.pickMode==="dlv"?"\n📅 配送日期："+S.dlvDate+"\n👤 收件人："+S.dlvName+"\n📱 收件手機："+S.dlvPhone+"\n🏠 配送地址："+S.dlvAddr+"\n⏰ 到貨時間："+S.dlvTime+"\n💳 帳號末五碼："+S.dlvLast5:S.pickMode==="lala"?"\n📅 配送日期："+S.lalaDate+"\n🏠 配送地址："+S.lalaAddr+"\n⏰ 到貨時間："+S.lalaTime+"\n💰 運費："+(S.lalaFee>0?("$"+S.lalaFee+"（已計入合計）"):"未填寫，依距離現場報價"):"";
   var pNote=S.pickMode==="meet"?"\n⚠️ 快到前請主動私訊闆娘！":"";
   var styleBlock=S.style?("\n🎀 造型："+S.style+(S.style==="自由暈染漸層系（限制使用白色鮮奶油）"&&S.color?"\n🎨 暈染顏色："+S.color:"")):"";
-  var txt="【吉門製甜 客製化蛋糕訂單】\nJimon\n─────────────────\n🎂 尺寸："+S.size+"（$"+S.sizeP+"）"+styleBlock+"\n🍦 鮮奶油口味："+S.cream+"\n🍮 風味內餡："+S.fill+"\n🍓 季節水果："+frStr+"\n🍷 豪酒："+S.wine+"\n📦 宅配："+dlvStr+"\n🍴 叉盤組："+fkStr+"\n🪧 手寫小牌："+(S.card||"（無）")+"\n─────────────────\n💰 合計：$"+S.total+"\n💳 付款方式："+payStr+tfBlock+"\n─────────────────\n📅 取貨時間："+pickup+pNote+dlvBlock+"\n📱 FB/IG/LINE："+(S.social||"（無）")+"\n🔍 得知管道："+(S.source||"（未填）")+"\n👤 訂購人："+S.name+"\n📱 聯絡電話："+S.phone+"\n💬 備注："+(S.note||"（無）")+"\n─────────────────\nIG / FB：lachoupatisserie";
+  var txt="【吉門製甜 客製化蛋糕訂單】\nJimon\n─────────────────\n🎂 尺寸："+S.size+"（$"+S.sizeP+"）"+styleBlock+"\n🍦 鮮奶油口味："+S.cream+"\n🍮 風味內餡（第一層）："+S.fill+"\n🍮 風味內餡（第二層）："+(S.fill2==="不加第二層"?"不加":S.fill2+(S.size==="4吋（2-3人）"?" (+$50)":" (+$80)"))+"\n🍓 季節水果："+frStr+"\n🍷 豪酒："+S.wine+"\n📦 宅配："+dlvStr+"\n🍴 叉盤組："+fkStr+"\n🪧 手寫小牌："+(S.card||"（無）")+"\n─────────────────\n💰 合計：$"+S.total+"\n💳 付款方式："+payStr+tfBlock+"\n─────────────────\n📅 取貨時間："+pickup+pNote+dlvBlock+"\n📱 FB/IG/LINE："+(S.social||"（無）")+"\n🔍 得知管道："+(S.source||"（未填）")+"\n👤 訂購人："+S.name+"\n📱 聯絡電話："+S.phone+"\n💬 備注："+(S.note||"（無）")+"\n─────────────────\nIG / FB：lachoupatisserie";
   document.getElementById("copyArea").value=txt;
 }
 
@@ -1082,7 +1106,7 @@ function doRestart(){
   if(so){so.style.display="flex";}
   var kn=document.getElementById("iName").value.trim();
   var kp=document.getElementById("iPhone").value.replace(/\D/g,"");
-  S={step:1,size:"",sizeP:0,style:"",color:"",cream:"經典原味",fill:"生巧克力",
+  S={step:1,size:"",sizeP:0,style:"",color:"",cream:"經典原味",fill:"生巧克力",fill2:"不加第二層",
     fruit:"不加水果",wine:"不加",forkQ:0,
     pickMode:"store",date:"",meetSlot:"",storeSlot:"",
     dlvDate:"",dlvName:"",dlvPhone:"",dlvAddr:"",dlvTime:"",dlvLast5:"",lalaAddr:"",lalaTime:"",lalaDate:"",lalaFee:0,
@@ -1246,7 +1270,7 @@ window.addEventListener("DOMContentLoaded",function(){
   function isFruitInSeason(idx){
     var m=new Date().getMonth()+1; // 1-12
     if(idx===2) return (m>=5&&m<=8); // 芒果 夏季
-    if(idx===3) return (m>=11||m<=4); // 草莓 冬季（跨年）
+    if(idx===3) return (m>=12||m<=4); // 草莓 冬季（跨年）
     return true;
   }
   function lockOutOfSeasonFruits(){
@@ -1268,7 +1292,7 @@ window.addEventListener("DOMContentLoaded",function(){
     var el=document.getElementById("fr"+idx);if(!el)return;
     el.addEventListener("click",function(){
       if((idx===2||idx===3)&&!isFruitInSeason(idx)){
-        var fname=idx===2?"台灣芒果（夏季5–8月）":"台灣草莓（冬季11–4月）";
+        var fname=idx===2?"台灣芒果（夏季5–8月）":"台灣草莓（冬季12–4月）";
         var msgEl=document.getElementById("fr-seasonmsg");
         if(msgEl){
           msgEl.textContent="🍃 "+fname+"目前還未到產季，請耐心等待水果成熟的季節再來品嚐喔～謝謝您的理解 💕";
@@ -1282,6 +1306,28 @@ window.addEventListener("DOMContentLoaded",function(){
       el.classList.add("on");S.fruit=FRUIT[idx];calcTotal();
     });
   })(i);}
+
+
+  // ── 第二層內餡加購 g0-g6 ──
+  var FILL2=["不加第二層","生巧克力","酒香生巧克力","法式烤布蕾","綜合莓果庫利（果凍）","抹茶生巧克力","奶茶烤布蕾"];
+  for(var i=0;i<=6;i++){(function(idx){
+    var el=document.getElementById("g"+idx);if(!el)return;
+    el.addEventListener("click",function(){
+      for(var j=0;j<=6;j++){var e=document.getElementById("g"+j);if(e)e.classList.remove("on");}
+      el.classList.add("on");
+      S.fill2=FILL2[idx];
+      calcTotal();
+    });
+  })(i);}
+
+  // 尺寸確定後更新 fill2 價格標示
+  function updateFill2Tag(){
+    var tag=document.getElementById("fill2PriceTag");
+    if(!tag)return;
+    if(S.size==="4吋（2-3人）") tag.textContent="4吋 +$50";
+    else if(S.size==="6吋（4-6人）"||S.size==="8吋（8-10人）") tag.textContent="6吋以上 +$80";
+    else tag.textContent="4吋 +$50 ／ 6吋 +$80";
+  }
 
   // Wine w0-w3
   for(var i=0;i<=3;i++){(function(idx){
