@@ -326,7 +326,7 @@ body{background:var(--cr);color:var(--tx);min-height:100vh;}
   <div class="g2">
     <div class="cc" id="c9"><div class="cdot" style="background:#f5eddc">🥜</div><div class="ci"><div class="cn">焦糖堅果醬</div><div class="cs">自製堅果</div></div><span class="ck">✓</span></div>
     <div class="cc" id="c10"><div class="cdot" style="background:#f0f0f0">🖤</div><div class="ci"><div class="cn">鹽之花黑芝麻</div><div class="cs">自製堅果</div></div><span class="ck">✓</span></div>
-    <div class="cc" id="c11"><div class="cdot" style="background:#f0e4dc">🍫</div><div class="ci"><div class="cn">巧克力</div><div class="cs">濃郁可可</div></div><span class="ck">✓</span></div>
+    <div class="cc" id="c11"><div class="cdot" style="background:#f0e4dc">🍫</div><div class="ci"><div class="cn">巧克力</div><div class="cs">濃郁可可・甜度和其他口味一樣</div></div><span class="ck">✓</span></div>
     <div class="cc" id="c12"><div class="cdot" style="background:#f0e8e0">☕</div><div class="ci"><div class="cn">咖啡</div><div class="cs">深烘咖啡</div></div><span class="ck">✓</span></div>
     <div class="cc" id="c13"><div class="cdot" style="background:#fef5e4">🍬</div><div class="ci"><div class="cn">太妃糖</div><div class="cs">自家熬煮</div></div><span class="ck">✓</span></div>
   </div>
@@ -1164,11 +1164,15 @@ window.addEventListener("DOMContentLoaded",function(){
   // 造型選擇
   function updateCreamLock(){
     var isWhite = S.style==="自由暈染漸層系（限制使用白色鮮奶油）";
-    var allowedIdx = [0,1]; // 經典原味、馬達加斯加香草
+    var isNoBlanc = S.style==="奶蓋造型"; // 奶蓋不能選原味/香草
+    var allowedWhite = [0,1]; // 白色造型：只允許原味、香草
+    var blockedNoBlanc = [0,1]; // 奶蓋造型：排除原味、香草
     for(var j=0;j<=13;j++){
       var ce=document.getElementById("c"+j);
       if(!ce)continue;
-      if(isWhite && allowedIdx.indexOf(j)===-1){
+      var lockWhite = isWhite && allowedWhite.indexOf(j)===-1;
+      var lockNoBlanc = isNoBlanc && blockedNoBlanc.indexOf(j)!==-1;
+      if(lockWhite || lockNoBlanc){
         ce.style.opacity="0.35";
         ce.style.pointerEvents="none";
         ce.style.cursor="not-allowed";
@@ -1179,11 +1183,17 @@ window.addEventListener("DOMContentLoaded",function(){
         ce.style.cursor="";
       }
     }
-    // 若目前選的 cream 不在允許清單，強制切回原味
+    // 白色造型：若目前選的 cream 不在允許清單，強制切回原味
     if(isWhite && ["經典原味","馬達加斯加香草"].indexOf(S.cream)===-1){
       for(var k=0;k<=13;k++){var ce2=document.getElementById("c"+k);if(ce2)ce2.classList.remove("on");}
       var c0=document.getElementById("c0");if(c0)c0.classList.add("on");
       S.cream="經典原味";
+    }
+    // 奶蓋造型：若目前選的是原味或香草，強制切到下一個可選項（c2）
+    if(isNoBlanc && ["經典原味","馬達加斯加香草"].indexOf(S.cream)!==-1){
+      for(var k=0;k<=13;k++){var ce3=document.getElementById("c"+k);if(ce3)ce3.classList.remove("on");}
+      var c2=document.getElementById("c2");if(c2)c2.classList.add("on");
+      S.cream="日本抹茶";
     }
     // 白色限定口味提示
     var cw=document.getElementById("creamWarning");
