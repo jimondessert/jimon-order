@@ -538,7 +538,6 @@ body{background:var(--cr);color:var(--tx);min-height:100vh;}
           <option value="15:00-16:00">15:00–16:00</option>
           <option value="16:00-17:00">16:00–17:00</option>
           <option value="17:00-18:00">17:00–18:00</option>
-          <option value="18:00-19:00">18:00–19:00</option>
           <option value="19:00-20:00">19:00–20:00</option>
           <option value="20:00-21:00">20:00–21:00</option>
         </select>
@@ -1377,9 +1376,30 @@ window.addEventListener("DOMContentLoaded",function(){
   document.getElementById("tab-dlv").addEventListener("click",function(){setPickMode("dlv");});
   document.getElementById("tab-lala").addEventListener("click",function(){setPickMode("lala");});
 
+  // buildStoreSlots: 星期五只到18:00
+  function buildStoreSlots(dateStr){
+    var sel=document.getElementById("iStoreSlot");
+    if(!sel)return;
+    var prevVal=sel.value;
+    var isFri=false;
+    if(dateStr){var d=new Date(dateStr);isFri=(d.getDay()===5);}
+    var slots=["14:00-15:00","15:00-16:00","16:00-17:00","17:00-18:00"];
+    if(!isFri)slots.push("18:00-19:00");
+    var labels={"14:00-15:00":"14:00–15:00","15:00-16:00":"15:00–16:00","16:00-17:00":"16:00–17:00","17:00-18:00":"17:00–18:00","18:00-19:00":"18:00–19:00"};
+    sel.innerHTML='<option value="">請選擇時段</option>';
+    slots.forEach(function(v){
+      var o=document.createElement("option");
+      o.value=v;o.textContent=labels[v];
+      sel.appendChild(o);
+    });
+    // 若前次選的時段仍在清單內則保留
+    if(slots.indexOf(prevVal)!==-1)sel.value=prevVal;
+  }
+
   // iDate
   document.getElementById("iDate").addEventListener("change",function(){
     clearErr("err-date","iDate");
+    if(S.pickMode==="store")buildStoreSlots(this.value);
     if(S.pickMode==="meet")buildMeetSlots(this.value);
   });
   document.getElementById("iMeetSlot").addEventListener("change",function(){clearErr("err-meet","iMeetSlot");});
