@@ -181,17 +181,17 @@ body{background:var(--cr);color:var(--tx);min-height:100vh;}
 
 <div id="noticeOverlay" style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.55);display:flex;align-items:center;justify-content:center;z-index:999999;">
   <div style="background:#fff;border-radius:20px;margin:0 20px;max-width:420px;width:100%;padding:28px 22px 28px;box-shadow:0 8px 32px rgba(0,0,0,0.18);">
-    <div style="text-align:center;font-size:36px;margin-bottom:8px;">📢</div>
-    <div style="font-size:18px;font-weight:700;color:#c04040;text-align:center;margin-bottom:14px;">重要公告</div>
-    <div style="background:#fce8e8;border-radius:14px;padding:16px 18px;margin-bottom:20px;line-height:1.9;font-size:15px;color:#333;border-left:4px solid #e57373;">
-      <strong style="color:#c04040;">這段時間無法接單</strong><br><br>
-      🌴 <strong>10/18–20</strong><br>
-      闆娘要休息一下下出去玩啦～<br><br>
-      ✈️ <strong>11/9–18</strong><br>
-      孝親之旅
+    <div style="text-align:center;font-size:48px;margin-bottom:8px;">🍓</div>
+    <div style="font-size:20px;font-weight:700;color:#c04040;text-align:center;margin-bottom:14px;">草莓季開始啦！</div>
+    <div style="background:#fff5f5;border-radius:14px;padding:16px 18px;margin-bottom:20px;line-height:1.9;font-size:15px;color:#333;border-left:4px solid #e57373;">
+      🍓 <strong style="color:#c04040;">12 月台灣草莓季正式登場</strong><br>
+      新鮮現採草莓，酸甜清香<br>
+      現在可以預定草莓口味蛋糕囉～<br><br>
+      📦 <strong>草莓加購價格</strong><br>
+      4吋 +$120 ／ 6吋 +$200 ／ 8吋 +$450
     </div>
-    <button id="noticeBtnOk" style="width:100%;padding:15px;border-radius:14px;border:none;background:linear-gradient(135deg,#b07ecb,#967bb6);color:#fff;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;-webkit-appearance:none;appearance:none;letter-spacing:1px;">
-      我知道了 ✓
+    <button id="noticeBtnOk" style="width:100%;padding:15px;border-radius:14px;border:none;background:linear-gradient(135deg,#e07070,#c04040);color:#fff;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;-webkit-appearance:none;appearance:none;letter-spacing:1px;">
+      我知道了 🍓
     </button>
   </div>
 </div>
@@ -374,14 +374,14 @@ body{background:var(--cr);color:var(--tx);min-height:100vh;}
 <!-- S4 加購 -->
 <div class="sec" id="s4">
   <div class="stitle">加購項目</div>
-  <div class="shint">水果 4吋+$50 / 6吋+$80</div>
+  <div class="shint">水果 4吋+$50 / 6吋+$80（草莓另計）</div>
   <div class="dvdr"><span>🍓 季節水果（擇一）</span></div>
   <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:12px;">
     <div class="frc on" id="fr0"><div class="fic">🚫</div><div style="flex:1"><div class="fn2">不加水果</div></div><span class="ck">✓</span></div>
-    <div class="frc" id="fr1"><div class="fic">🍏</div><div style="flex:1"><div class="fn2">無籽葡萄</div></div><div class="frc-price">4吋+$50／6吋+$80</div><span class="ck">✓</span></div>
-    <div class="frc" id="fr2"><div class="fic">🥭</div><div style="flex:1"><div class="fn2">台灣芒果</div><div class="fs2">夏季 5–8 月</div></div><div class="frc-price">4吋+$50／6吋+$80</div><span class="ck">✓</span></div>
+    <div class="frc" id="fr1"><div class="fic">🍏</div><div style="flex:1"><div class="fn2">無籽葡萄</div></div><div class="frc-price">4吋+$50／6吋+$80／8吋+$150</div><span class="ck">✓</span></div>
+    <div class="frc" id="fr2"><div class="fic">🥭</div><div style="flex:1"><div class="fn2">台灣芒果</div><div class="fs2">夏季 5–8 月</div></div><div class="frc-price">4吋+$50／6吋+$80／8吋+$150</div><span class="ck">✓</span></div>
     <div class="season-tip" id="tip-fr2">🥭 芒果還在努力長大中，要等到 5–8 月才會是當季最甜美的時候，請耐心等候季節成熟喔 💛</div>
-    <div class="frc" id="fr3"><div class="fic">🍓</div><div style="flex:1"><div class="fn2">台灣草莓</div><div class="fs2">冬季 12–4 月</div></div><div class="frc-price">4吋+$50／6吋+$80</div><span class="ck">✓</span></div>
+    <div class="frc" id="fr3"><div class="fic">🍓</div><div style="flex:1"><div class="fn2">台灣草莓</div><div class="fs2">冬季 12–4 月</div></div><div class="frc-price">4吋+$120／6吋+$200／8吋+$450</div><span class="ck">✓</span></div>
     <div class="season-tip" id="tip-fr3">🍓 草莓還在等待冬天的到來，要到 12–4 月才會是最香甜的產季，請耐心等候季節成熟喔 💕</div>
     <div class="frc" id="fr4"><div class="fic">🍎</div><div style="flex:1"><div class="fn2">炒蘋果</div><div class="fs2">當季蘋果</div></div><div class="frc-price">4吋+$50／6吋+$80</div><span class="ck">✓</span></div>
     <div class="frc" id="fr5"><div class="fic">🍎🫙</div><div style="flex:1"><div class="fn2">炒蘋果（+肉桂）</div><div class="fs2">當季蘋果 · 加入溫暖肉桂香</div></div><div class="frc-price">4吋+$50／6吋+$80</div><span class="ck">✓</span></div>
@@ -758,7 +758,8 @@ var CREAM=["經典原味","馬達加斯加香草","日本抹茶（佐藤園）",
 var FILL=["生巧克力","酒香生巧克力","法式烤布蕾","綜合莓果庫利（果凍）","抹茶生巧克力","奶茶烤布蕾"];
 var FRUIT=["不加水果","無籽葡萄","台灣芒果","台灣草莓","炒蘋果","炒蘋果（+肉桂）"];
 var WINE=["不加","君度橙酒","黑蘭姆酒","酒釀櫻桃"];
-var FA={"4吋（2-3人）":50,"6吋（4-6人）":80,"8吋（8-10人）":0};
+var FA={"4吋（2-3人）":50,"6吋（4-6人）":80,"8吋（8-10人）":150};
+var FA_STRAWBERRY={"4吋（2-3人）":120,"6吋（4-6人）":200,"8吋（8-10人）":450};
 var SZ=[["4吋（2-3人）",500],["6吋（4-6人）",750],["8吋（8-10人）",1600]];
 
 var S={step:1,size:"",sizeP:0,source:"",style:"",color:"",cream:"經典原味",fill:"生巧克力",
@@ -778,7 +779,10 @@ function inSeason(month, ranges){
   return false;
 }
 function applySeasonLock(){
-  var nowMonth=new Date().getMonth()+1;
+  // 優先用取貨日期月份，未選日期則用今天
+  var refDate=document.getElementById("iDate")&&document.getElementById("iDate").value
+    ? new Date(document.getElementById("iDate").value) : new Date();
+  var nowMonth=refDate.getMonth()+1;
   var mangoOk = inSeason(nowMonth, [[5,8]]);
   var strawberryOk = inSeason(nowMonth, [[12,4]]); // 12月到次年4月
   
@@ -805,7 +809,7 @@ var STYLE_IMAGES={
 };
 
 function calcTotal(){
-  var fr=S.fruit!=="不加水果"?(FA[S.size]||0):0;
+  var fr=S.fruit!=="不加水果"?(S.fruit==="台灣草莓"?(FA_STRAWBERRY[S.size]||0):(FA[S.size]||0)):0;
   var f2p=S.fill2!=="不加第二層"?(S.size==="4吋（2-3人）"?50:80):0;
   S.total=S.sizeP+fr+f2p+(S.forkQ*20)+(S.pickMode==="dlv"?290:0)+(S.pickMode==="lala"?(S.lalaFee||0):0);
 }
@@ -1009,7 +1013,7 @@ function validate5(){
 
 function renderOrder(){
   calcTotal();
-  var fa=S.fruit!=="不加水果"?(FA[S.size]||0):0;
+  var fa=S.fruit!=="不加水果"?(S.fruit==="台灣草莓"?(FA_STRAWBERRY[S.size]||0):(FA[S.size]||0)):0;
   var frStr=S.fruit!=="不加水果"?S.fruit+"（+$"+fa+"）":"不加水果";
   var fkStr=S.forkQ>0?"加購"+S.forkQ+"組（+$"+(S.forkQ*20)+"），含贈1組共"+(S.forkQ+1)+"組":"不加購（已附贈1組）";
   var dlvStr=S.pickMode==="dlv"?"黑貓冷凍宅配（+$290）":"不需要";
@@ -1277,7 +1281,10 @@ window.addEventListener("DOMContentLoaded",function(){
 
   // 季節水果判斷：芒果(5-8月) fr2、草莓(11-4月) fr3
   function isFruitInSeason(idx){
-    var m=new Date().getMonth()+1; // 1-12
+    // 優先用取貨日期月份，未選日期則用今天
+    var refDate=document.getElementById("iDate")&&document.getElementById("iDate").value
+      ? new Date(document.getElementById("iDate").value) : new Date();
+    var m=refDate.getMonth()+1; // 1-12
     if(idx===2) return (m>=5&&m<=8); // 芒果 夏季
     if(idx===3) return (m>=12||m<=4); // 草莓 冬季（跨年）
     return true;
@@ -1401,6 +1408,9 @@ window.addEventListener("DOMContentLoaded",function(){
     clearErr("err-date","iDate");
     if(S.pickMode==="store")buildStoreSlots(this.value);
     if(S.pickMode==="meet")buildMeetSlots(this.value);
+    // 取貨日期改變後重新判斷季節水果
+    applySeasonLock();
+    lockOutOfSeasonFruits();
   });
   document.getElementById("iMeetSlot").addEventListener("change",function(){clearErr("err-meet","iMeetSlot");});
 
