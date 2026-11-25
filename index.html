@@ -1000,6 +1000,7 @@ function validate5(){
       var laNow=new Date();
       var laMin=new Date(laNow.getTime()+24*60*60*1000);
       if(laD<laMin){showErr("err-laladate","請至少提前 24 小時預訂","iLalaDate");ok=false;}
+      else if(laD.getDay()===3){showErr("err-laladate","每週三公休，請選擇其他配送日期","iLalaDate");ok=false;}
       else S.lalaDate=laDate.replace(/-/g,"/");
     }
     if(!laAddr){showErr("err-lalaaddr","請填寫配送地址","iLalaAddr");ok=false;}
